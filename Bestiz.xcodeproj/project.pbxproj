@@ -1,0 +1,323 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A5FBFCE7145EFBF500B45C7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBFCE6145EFBF500B45C7B /* UIKit.framework */; };
+		A5FBFCE9145EFBF500B45C7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBFCE8145EFBF500B45C7B /* Foundation.framework */; };
+		A5FBFCEB145EFBF500B45C7B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBFCEA145EFBF500B45C7B /* CoreGraphics.framework */; };
+		A5FBFCF1145EFBF500B45C7B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5FBFCEF145EFBF500B45C7B /* InfoPlist.strings */; };
+		A5FBFCF3145EFBF500B45C7B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FBFCF2145EFBF500B45C7B /* main.m */; };
+		A5FBFCF7145EFBF500B45C7B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FBFCF6145EFBF500B45C7B /* AppDelegate.m */; };
+		A5FBFCFA145EFBF500B45C7B /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FBFCF9145EFBF500B45C7B /* MasterViewController.m */; };
+		A5FBFCFD145EFBF500B45C7B /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FBFCFC145EFBF500B45C7B /* DetailViewController.m */; };
+		A5FBFD00145EFBF500B45C7B /* MasterViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5FBFCFE145EFBF500B45C7B /* MasterViewController_iPhone.xib */; };
+		A5FBFD03145EFBF500B45C7B /* MasterViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5FBFD01145EFBF500B45C7B /* MasterViewController_iPad.xib */; };
+		A5FBFD06145EFBF500B45C7B /* DetailViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5FBFD04145EFBF500B45C7B /* DetailViewController_iPhone.xib */; };
+		A5FBFD09145EFBF500B45C7B /* DetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5FBFD07145EFBF500B45C7B /* DetailViewController_iPad.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A5FBFCE2145EFBF500B45C7B /* Bestiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bestiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5FBFCE6145EFBF500B45C7B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A5FBFCE8145EFBF500B45C7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A5FBFCEA145EFBF500B45C7B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A5FBFCEE145EFBF500B45C7B /* Bestiz-Info.plist */ = {isa = PBXFileReference; path = "Bestiz-Info.plist"; sourceTree = "<group>"; };
+		A5FBFCF0145EFBF500B45C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A5FBFCF2145EFBF500B45C7B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A5FBFCF4145EFBF500B45C7B /* Bestiz-Prefix.pch */ = {isa = PBXFileReference; path = "Bestiz-Prefix.pch"; sourceTree = "<group>"; };
+		A5FBFCF5145EFBF500B45C7B /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		A5FBFCF6145EFBF500B45C7B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A5FBFCF8145EFBF500B45C7B /* MasterViewController.h */ = {isa = PBXFileReference; path = MasterViewController.h; sourceTree = "<group>"; };
+		A5FBFCF9145EFBF500B45C7B /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		A5FBFCFB145EFBF500B45C7B /* DetailViewController.h */ = {isa = PBXFileReference; path = DetailViewController.h; sourceTree = "<group>"; };
+		A5FBFCFC145EFBF500B45C7B /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		A5FBFCFF145EFBF500B45C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController_iPhone.xib; sourceTree = "<group>"; };
+		A5FBFD02145EFBF500B45C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController_iPad.xib; sourceTree = "<group>"; };
+		A5FBFD05145EFBF500B45C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController_iPhone.xib; sourceTree = "<group>"; };
+		A5FBFD08145EFBF500B45C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController_iPad.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A5FBFCDF145EFBF500B45C7B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5FBFCE7145EFBF500B45C7B /* UIKit.framework in Frameworks */,
+				A5FBFCE9145EFBF500B45C7B /* Foundation.framework in Frameworks */,
+				A5FBFCEB145EFBF500B45C7B /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A5FBFCD7145EFBF400B45C7B = {
+			isa = PBXGroup;
+			children = (
+				A5FBFCEC145EFBF500B45C7B /* Bestiz */,
+				A5FBFCE5145EFBF500B45C7B /* Frameworks */,
+				A5FBFCE3145EFBF500B45C7B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A5FBFCE3145EFBF500B45C7B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A5FBFCE2145EFBF500B45C7B /* Bestiz.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A5FBFCE5145EFBF500B45C7B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A5FBFCE6145EFBF500B45C7B /* UIKit.framework */,
+				A5FBFCE8145EFBF500B45C7B /* Foundation.framework */,
+				A5FBFCEA145EFBF500B45C7B /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A5FBFCEC145EFBF500B45C7B /* Bestiz */ = {
+			isa = PBXGroup;
+			children = (
+				A5FBFCF5145EFBF500B45C7B /* AppDelegate.h */,
+				A5FBFCF6145EFBF500B45C7B /* AppDelegate.m */,
+				A5FBFCF8145EFBF500B45C7B /* MasterViewController.h */,
+				A5FBFCF9145EFBF500B45C7B /* MasterViewController.m */,
+				A5FBFCFB145EFBF500B45C7B /* DetailViewController.h */,
+				A5FBFCFC145EFBF500B45C7B /* DetailViewController.m */,
+				A5FBFCFE145EFBF500B45C7B /* MasterViewController_iPhone.xib */,
+				A5FBFD01145EFBF500B45C7B /* MasterViewController_iPad.xib */,
+				A5FBFD04145EFBF500B45C7B /* DetailViewController_iPhone.xib */,
+				A5FBFD07145EFBF500B45C7B /* DetailViewController_iPad.xib */,
+				A5FBFCED145EFBF500B45C7B /* Supporting Files */,
+			);
+			path = Bestiz;
+			sourceTree = "<group>";
+		};
+		A5FBFCED145EFBF500B45C7B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A5FBFCEE145EFBF500B45C7B /* Bestiz-Info.plist */,
+				A5FBFCEF145EFBF500B45C7B /* InfoPlist.strings */,
+				A5FBFCF2145EFBF500B45C7B /* main.m */,
+				A5FBFCF4145EFBF500B45C7B /* Bestiz-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A5FBFCE1145EFBF500B45C7B /* Bestiz */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5FBFD0C145EFBF500B45C7B /* Build configuration list for PBXNativeTarget "Bestiz" */;
+			buildPhases = (
+				A5FBFCDE145EFBF500B45C7B /* Sources */,
+				A5FBFCDF145EFBF500B45C7B /* Frameworks */,
+				A5FBFCE0145EFBF500B45C7B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Bestiz;
+			productName = Bestiz;
+			productReference = A5FBFCE2145EFBF500B45C7B /* Bestiz.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A5FBFCD9145EFBF400B45C7B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = A5FBFCDC145EFBF400B45C7B /* Build configuration list for PBXProject "Bestiz" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A5FBFCD7145EFBF400B45C7B;
+			productRefGroup = A5FBFCE3145EFBF500B45C7B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A5FBFCE1145EFBF500B45C7B /* Bestiz */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A5FBFCE0145EFBF500B45C7B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5FBFCF1145EFBF500B45C7B /* InfoPlist.strings in Resources */,
+				A5FBFD00145EFBF500B45C7B /* MasterViewController_iPhone.xib in Resources */,
+				A5FBFD03145EFBF500B45C7B /* MasterViewController_iPad.xib in Resources */,
+				A5FBFD06145EFBF500B45C7B /* DetailViewController_iPhone.xib in Resources */,
+				A5FBFD09145EFBF500B45C7B /* DetailViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A5FBFCDE145EFBF500B45C7B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5FBFCF3145EFBF500B45C7B /* main.m in Sources */,
+				A5FBFCF7145EFBF500B45C7B /* AppDelegate.m in Sources */,
+				A5FBFCFA145EFBF500B45C7B /* MasterViewController.m in Sources */,
+				A5FBFCFD145EFBF500B45C7B /* DetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A5FBFCEF145EFBF500B45C7B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5FBFCF0145EFBF500B45C7B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A5FBFCFE145EFBF500B45C7B /* MasterViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5FBFCFF145EFBF500B45C7B /* en */,
+			);
+			name = MasterViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		A5FBFD01145EFBF500B45C7B /* MasterViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5FBFD02145EFBF500B45C7B /* en */,
+			);
+			name = MasterViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		A5FBFD04145EFBF500B45C7B /* DetailViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5FBFD05145EFBF500B45C7B /* en */,
+			);
+			name = DetailViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		A5FBFD07145EFBF500B45C7B /* DetailViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5FBFD08145EFBF500B45C7B /* en */,
+			);
+			name = DetailViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A5FBFD0A145EFBF500B45C7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A5FBFD0B145EFBF500B45C7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A5FBFD0D145EFBF500B45C7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Bestiz/Bestiz-Prefix.pch";
+				INFOPLIST_FILE = "Bestiz/Bestiz-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A5FBFD0E145EFBF500B45C7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Bestiz/Bestiz-Prefix.pch";
+				INFOPLIST_FILE = "Bestiz/Bestiz-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A5FBFCDC145EFBF400B45C7B /* Build configuration list for PBXProject "Bestiz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5FBFD0A145EFBF500B45C7B /* Debug */,
+				A5FBFD0B145EFBF500B45C7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5FBFD0C145EFBF500B45C7B /* Build configuration list for PBXNativeTarget "Bestiz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5FBFD0D145EFBF500B45C7B /* Debug */,
+				A5FBFD0E145EFBF500B45C7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A5FBFCD9145EFBF400B45C7B /* Project object */;
+}
