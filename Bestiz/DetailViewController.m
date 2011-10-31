@@ -16,13 +16,13 @@
 @implementation DetailViewController
 
 @synthesize detailItem = _detailItem;
-@synthesize detailDescriptionLabel = _detailDescriptionLabel;
+@synthesize detailDescriptionTextView = _detailDescriptionTextView;
 @synthesize masterPopoverController = _masterPopoverController;
 
 - (void)dealloc
 {
     [_detailItem release];
-    [_detailDescriptionLabel release];
+    [_detailDescriptionTextView release];
     [_masterPopoverController release];
     [super dealloc];
 }
@@ -49,7 +49,7 @@
     // Update the user interface for the detail item.
 
     if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
+        self.detailDescriptionTextView.text = [self.detailItem description];
     }
 }
 

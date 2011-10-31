@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HTMLParser.h"
 
 @class DetailViewController;
 
 @interface MasterViewController : UITableViewController
+{
+    NSMutableArray *hrefData;
+    NSMutableArray *titleData;
+}
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 

@@ -19,6 +19,8 @@
 		A5FBFD03145EFBF500B45C7B /* MasterViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5FBFD01145EFBF500B45C7B /* MasterViewController_iPad.xib */; };
 		A5FBFD06145EFBF500B45C7B /* DetailViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5FBFD04145EFBF500B45C7B /* DetailViewController_iPhone.xib */; };
 		A5FBFD09145EFBF500B45C7B /* DetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5FBFD07145EFBF500B45C7B /* DetailViewController_iPad.xib */; };
+		A5FBFD14145EFC1C00B45C7B /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FBFD11145EFC1C00B45C7B /* HTMLNode.m */; };
+		A5FBFD15145EFC1C00B45C7B /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FBFD13145EFC1C00B45C7B /* HTMLParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,20 +28,24 @@
 		A5FBFCE6145EFBF500B45C7B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A5FBFCE8145EFBF500B45C7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A5FBFCEA145EFBF500B45C7B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		A5FBFCEE145EFBF500B45C7B /* Bestiz-Info.plist */ = {isa = PBXFileReference; path = "Bestiz-Info.plist"; sourceTree = "<group>"; };
+		A5FBFCEE145EFBF500B45C7B /* Bestiz-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Bestiz-Info.plist"; sourceTree = "<group>"; };
 		A5FBFCF0145EFBF500B45C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A5FBFCF2145EFBF500B45C7B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A5FBFCF4145EFBF500B45C7B /* Bestiz-Prefix.pch */ = {isa = PBXFileReference; path = "Bestiz-Prefix.pch"; sourceTree = "<group>"; };
-		A5FBFCF5145EFBF500B45C7B /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		A5FBFCF4145EFBF500B45C7B /* Bestiz-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bestiz-Prefix.pch"; sourceTree = "<group>"; };
+		A5FBFCF5145EFBF500B45C7B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A5FBFCF6145EFBF500B45C7B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A5FBFCF8145EFBF500B45C7B /* MasterViewController.h */ = {isa = PBXFileReference; path = MasterViewController.h; sourceTree = "<group>"; };
+		A5FBFCF8145EFBF500B45C7B /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		A5FBFCF9145EFBF500B45C7B /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		A5FBFCFB145EFBF500B45C7B /* DetailViewController.h */ = {isa = PBXFileReference; path = DetailViewController.h; sourceTree = "<group>"; };
+		A5FBFCFB145EFBF500B45C7B /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		A5FBFCFC145EFBF500B45C7B /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		A5FBFCFF145EFBF500B45C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController_iPhone.xib; sourceTree = "<group>"; };
 		A5FBFD02145EFBF500B45C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController_iPad.xib; sourceTree = "<group>"; };
 		A5FBFD05145EFBF500B45C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController_iPhone.xib; sourceTree = "<group>"; };
 		A5FBFD08145EFBF500B45C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController_iPad.xib; sourceTree = "<group>"; };
+		A5FBFD10145EFC1C00B45C7B /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
+		A5FBFD11145EFC1C00B45C7B /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLNode.m; sourceTree = "<group>"; };
+		A5FBFD12145EFC1C00B45C7B /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
+		A5FBFD13145EFC1C00B45C7B /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,7 @@
 		A5FBFCEC145EFBF500B45C7B /* Bestiz */ = {
 			isa = PBXGroup;
 			children = (
+				A5FBFD0F145EFC0500B45C7B /* HTMLParser */,
 				A5FBFCF5145EFBF500B45C7B /* AppDelegate.h */,
 				A5FBFCF6145EFBF500B45C7B /* AppDelegate.m */,
 				A5FBFCF8145EFBF500B45C7B /* MasterViewController.h */,
@@ -110,6 +117,17 @@
 				A5FBFCF4145EFBF500B45C7B /* Bestiz-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A5FBFD0F145EFC0500B45C7B /* HTMLParser */ = {
+			isa = PBXGroup;
+			children = (
+				A5FBFD10145EFC1C00B45C7B /* HTMLNode.h */,
+				A5FBFD11145EFC1C00B45C7B /* HTMLNode.m */,
+				A5FBFD12145EFC1C00B45C7B /* HTMLParser.h */,
+				A5FBFD13145EFC1C00B45C7B /* HTMLParser.m */,
+			);
+			name = HTMLParser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +199,8 @@
 				A5FBFCF7145EFBF500B45C7B /* AppDelegate.m in Sources */,
 				A5FBFCFA145EFBF500B45C7B /* MasterViewController.m in Sources */,
 				A5FBFCFD145EFBF500B45C7B /* DetailViewController.m in Sources */,
+				A5FBFD14145EFC1C00B45C7B /* HTMLNode.m in Sources */,
+				A5FBFD15145EFC1C00B45C7B /* HTMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,7 +300,10 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bestiz/Bestiz-Prefix.pch";
+				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2/**";
 				INFOPLIST_FILE = "Bestiz/Bestiz-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -291,7 +314,10 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bestiz/Bestiz-Prefix.pch";
+				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2/**";
 				INFOPLIST_FILE = "Bestiz/Bestiz-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

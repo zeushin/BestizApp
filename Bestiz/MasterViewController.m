@@ -19,6 +19,30 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = NSLocalizedString(@"Master", @"Master");
+        
+        titleData = [[NSMutableArray array] retain];
+        hrefData = [[NSMutableArray array] retain];
+        
+        NSString *urlString = @"http://hgc.bestiz.net/zboard/zboard.php?&id=gworld0707";
+        NSURL *url = [NSURL URLWithString:urlString];
+        NSString *stringWithUrl = [NSString stringWithContentsOfURL:url encoding:-2147481280 error:nil];
+        NSData *urlData = [stringWithUrl dataUsingEncoding:NSUTF8StringEncoding];
+        
+        HTMLParser *parser = [[HTMLParser alloc] initWithData:urlData error:nil];
+        HTMLNode *body = [parser body];
+        NSArray *tableList = [body findChildrenWithAttribute:@"style" matchingName:@"word-break:break-all;" allowPartial:YES];
+
+        for (int i = 0; i < [tableList count]; i++)
+        {
+            HTMLNode *titleNode = [tableList objectAtIndex:i];
+            NSString *href = [NSString stringWithFormat:@"http://hgc.bestiz.net/zboard/%@", [[titleNode findChildTag:@"a"] getAttributeNamed:@"href"]];
+            NSString *title = [titleNode allContents];
+            [hrefData addObject:href];
+            [titleData addObject:title];
+//            NSLog(@"%@", [data objectAtIndex:i]);
+        }
+
+        
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             self.clearsSelectionOnViewWillAppear = NO;
             self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
@@ -30,6 +54,9 @@
 - (void)dealloc
 {
     [_detailViewController release];
+    [titleData release];
+    [hrefData release];
+    
     [super dealloc];
 }
 
@@ -95,7 +122,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return [titleData count];
 }
 
 // Customize the appearance of table view cells.
@@ -108,11 +135,13 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.textLabel.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
         }
     }
 
     // Configure the cell.
-    cell.textLabel.text = NSLocalizedString(@"Detail", @"Detail");
+    cell.textLabel.text = [titleData objectAtIndex:[indexPath row]];
+    
     return cell;
 }
 
@@ -160,6 +189,16 @@
 	    if (!self.detailViewController) {
 	        self.detailViewController = [[[DetailViewController alloc] initWithNibName:@"DetailViewController_iPhone" bundle:nil] autorelease];
 	    }
+        NSString *urlString = [hrefData objectAtIndex:[indexPath row]];
+        NSURL *url = [NSURL URLWithString:urlString];
+        NSString *stringWithUrl = [NSString stringWithContentsOfURL:url encoding:-2147481280 error:nil];
+        NSData *urlData = [stringWithUrl dataUsingEncoding:NSUTF8StringEncoding];
+        
+        HTMLParser *parser = [[HTMLParser alloc] initWithData:urlData error:nil];
+        HTMLNode *body = [parser body];
+        NSString *allContent = [[[body findChildWithAttribute:@"style" matchingName:@"line-height:160%" allowPartial:YES] allContents] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        self.detailViewController.detailDescriptionTextView.text = allContent;
+        
         [self.navigationController pushViewController:self.detailViewController animated:YES];
     }
 }
