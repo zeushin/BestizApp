@@ -6,6 +6,8 @@
 2. Search for setting "Header Search Paths"
 3. Add a new search path "${SDKROOT}/usr/include/libxml2"
 4. Enable recursive option
+
+
 -Add libxml2 library to to your project
 
 1. Menu Project->Edit Project Settings
