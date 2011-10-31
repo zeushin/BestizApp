@@ -1,4 +1,4 @@
-#check project setting before build
+#checking your project setting before to build
 
 -Add libxml2 includes to your project
 
