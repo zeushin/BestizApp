@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A5DC87A1146049B800BA91A5 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DC87A0146049B800BA91A5 /* BaseViewController.m */; };
+		A5DC87A614608A8000BA91A5 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DC87A414608A8000BA91A5 /* MainTableViewController.m */; };
+		A5DC87A714608A8000BA91A5 /* MainTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5DC87A514608A8000BA91A5 /* MainTableViewController.xib */; };
+		A5DC87AA1460956700BA91A5 /* BoardIndexList.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DC87A91460956600BA91A5 /* BoardIndexList.m */; };
 		A5FBFCE7145EFBF500B45C7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBFCE6145EFBF500B45C7B /* UIKit.framework */; };
 		A5FBFCE9145EFBF500B45C7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBFCE8145EFBF500B45C7B /* Foundation.framework */; };
 		A5FBFCEB145EFBF500B45C7B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBFCEA145EFBF500B45C7B /* CoreGraphics.framework */; };
@@ -24,6 +28,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A5DC879F146049B800BA91A5 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		A5DC87A0146049B800BA91A5 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		A5DC87A314608A8000BA91A5 /* MainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
+		A5DC87A414608A8000BA91A5 /* MainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewController.m; sourceTree = "<group>"; };
+		A5DC87A514608A8000BA91A5 /* MainTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTableViewController.xib; sourceTree = "<group>"; };
+		A5DC87A81460956600BA91A5 /* BoardIndexList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardIndexList.h; sourceTree = "<group>"; };
+		A5DC87A91460956600BA91A5 /* BoardIndexList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardIndexList.m; sourceTree = "<group>"; };
 		A5FBFCE2145EFBF500B45C7B /* Bestiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bestiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5FBFCE6145EFBF500B45C7B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A5FBFCE8145EFBF500B45C7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -95,6 +106,13 @@
 				A5FBFD0F145EFC0500B45C7B /* HTMLParser */,
 				A5FBFCF5145EFBF500B45C7B /* AppDelegate.h */,
 				A5FBFCF6145EFBF500B45C7B /* AppDelegate.m */,
+				A5DC87A81460956600BA91A5 /* BoardIndexList.h */,
+				A5DC87A91460956600BA91A5 /* BoardIndexList.m */,
+				A5DC879F146049B800BA91A5 /* BaseViewController.h */,
+				A5DC87A0146049B800BA91A5 /* BaseViewController.m */,
+				A5DC87A314608A8000BA91A5 /* MainTableViewController.h */,
+				A5DC87A414608A8000BA91A5 /* MainTableViewController.m */,
+				A5DC87A514608A8000BA91A5 /* MainTableViewController.xib */,
 				A5FBFCF8145EFBF500B45C7B /* MasterViewController.h */,
 				A5FBFCF9145EFBF500B45C7B /* MasterViewController.m */,
 				A5FBFCFB145EFBF500B45C7B /* DetailViewController.h */,
@@ -185,6 +203,7 @@
 				A5FBFD03145EFBF500B45C7B /* MasterViewController_iPad.xib in Resources */,
 				A5FBFD06145EFBF500B45C7B /* DetailViewController_iPhone.xib in Resources */,
 				A5FBFD09145EFBF500B45C7B /* DetailViewController_iPad.xib in Resources */,
+				A5DC87A714608A8000BA91A5 /* MainTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +220,9 @@
 				A5FBFCFD145EFBF500B45C7B /* DetailViewController.m in Sources */,
 				A5FBFD14145EFC1C00B45C7B /* HTMLNode.m in Sources */,
 				A5FBFD15145EFC1C00B45C7B /* HTMLParser.m in Sources */,
+				A5DC87A1146049B800BA91A5 /* BaseViewController.m in Sources */,
+				A5DC87A614608A8000BA91A5 /* MainTableViewController.m in Sources */,
+				A5DC87AA1460956700BA91A5 /* BoardIndexList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +364,7 @@
 				A5FBFD0E145EFBF500B45C7B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
