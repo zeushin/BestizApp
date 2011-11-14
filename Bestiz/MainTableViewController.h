@@ -11,7 +11,7 @@
 
 @interface MainTableViewController : UITableViewController
 {
-    NSDictionary *boardIndexList;
+    NSMutableArray *boardIndexList;
 }
 
 @end

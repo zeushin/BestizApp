@@ -7,42 +7,23 @@
 //
 
 #import "MasterViewController.h"
-
+#import "BestizParser.h"
 #import "DetailViewController.h"
 
 @implementation MasterViewController
 
+@synthesize urlString, hrefString;
 @synthesize detailViewController = _detailViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Master", @"Master");
-        
         titleData = [[NSMutableArray array] retain];
         hrefData = [[NSMutableArray array] retain];
         
-        NSString *urlString = @"http://hgc.bestiz.net/zboard/zboard.php?&id=gworld0707";
-        NSURL *url = [NSURL URLWithString:urlString];
-        NSString *stringWithUrl = [NSString stringWithContentsOfURL:url encoding:-2147481280 error:nil];
-        NSData *urlData = [stringWithUrl dataUsingEncoding:NSUTF8StringEncoding];
-        
-        HTMLParser *parser = [[HTMLParser alloc] initWithData:urlData error:nil];
-        HTMLNode *body = [parser body];
-        NSArray *tableList = [body findChildrenWithAttribute:@"style" matchingName:@"word-break:break-all;" allowPartial:YES];
+//        urlString = @"http://hgc.bestiz.net/zboard/zboard.php?&id=gworld0707";
 
-        for (int i = 0; i < [tableList count]; i++)
-        {
-            HTMLNode *titleNode = [tableList objectAtIndex:i];
-            NSString *href = [NSString stringWithFormat:@"http://hgc.bestiz.net/zboard/%@", [[titleNode findChildTag:@"a"] getAttributeNamed:@"href"]];
-            NSString *title = [titleNode allContents];
-            [hrefData addObject:href];
-            [titleData addObject:title];
-//            NSLog(@"%@", [data objectAtIndex:i]);
-        }
-
-        
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             self.clearsSelectionOnViewWillAppear = NO;
             self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
@@ -54,6 +35,8 @@
 - (void)dealloc
 {
     [_detailViewController release];
+    [urlString release];
+    [hrefString release];
     [titleData release];
     [hrefData release];
     
@@ -74,6 +57,25 @@
 	// Do any additional setup after loading the view, typically from a nib.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+    }
+    if (urlString) {
+        NSURL *url = [NSURL URLWithString:urlString];
+        BestizParser *bestizParser = [[BestizParser alloc] init];
+        
+        NSArray *tableList = [bestizParser parsingWithListOfURL:url];
+        
+        for (int i = 0; i < [tableList count]; i++)
+        {
+            HTMLNode *titleNode = [tableList objectAtIndex:i];
+            NSString *href = [hrefString stringByAppendingFormat:@"%@%@", @"/", [[titleNode findChildTag:@"a"] getAttributeNamed:@"href"]];
+//            NSString *href = [NSString stringWithFormat:hrefString, [[titleNode findChildTag:@"a"] getAttributeNamed:@"href"]];
+            NSString *title = [titleNode allContents];
+            [hrefData addObject:href];
+            [titleData addObject:title];
+            //            NSLog(@"%@", [data objectAtIndex:i]);
+        }
+        
+        [bestizParser release];
     }
 }
 
@@ -189,14 +191,12 @@
 	    if (!self.detailViewController) {
 	        self.detailViewController = [[[DetailViewController alloc] initWithNibName:@"DetailViewController_iPhone" bundle:nil] autorelease];
 	    }
-        NSString *urlString = [hrefData objectAtIndex:[indexPath row]];
-        NSURL *url = [NSURL URLWithString:urlString];
-        NSString *stringWithUrl = [NSString stringWithContentsOfURL:url encoding:-2147481280 error:nil];
-        NSData *urlData = [stringWithUrl dataUsingEncoding:NSUTF8StringEncoding];
+        NSString *detailUrlString = [hrefData objectAtIndex:[indexPath row]];
+        NSURL *url = [NSURL URLWithString:detailUrlString]; 
+
+        BestizParser *bestizParser = [[BestizParser alloc] init];
+        NSString *allContent = [bestizParser parsingWithContentOfURL:url];
         
-        HTMLParser *parser = [[HTMLParser alloc] initWithData:urlData error:nil];
-        HTMLNode *body = [parser body];
-        NSString *allContent = [[[body findChildWithAttribute:@"style" matchingName:@"line-height:160%" allowPartial:YES] allContents] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         self.detailViewController.detailDescriptionTextView.text = allContent;
         
         [self.navigationController pushViewController:self.detailViewController animated:YES];

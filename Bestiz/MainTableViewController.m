@@ -7,17 +7,41 @@
 //
 
 #import "MainTableViewController.h"
-
-#define NumberOfBoard 3
+#import "BoardIndex.h"
+#import "MasterViewController.h"
 
 @implementation MainTableViewController
+
+- (BoardIndex *)boardIndexName:(NSString *)name Url:(NSString *)url GuestType:(GuestType)guestType
+{
+    BoardIndex *boardIndex = [[[BoardIndex alloc] init] autorelease];
+    boardIndex.nameOfBoard = name;
+    boardIndex.urlOfBoard = url;
+    boardIndex.guestType = guestType;
+    
+    return boardIndex;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        BoardIndex *boardIndex = [[BoardIndex alloc] init];
         
+        NSString *guestHeaven = @"게스트 천국";
+        NSString *guestHeavenUrl = [boardIndex urlOfBoard:BoardCategoryGuestHeaven BoardType:BoardTypeList];
+        NSString *guestSpring = @"게잡의 봄";
+        NSString *guestSpringUrl = [boardIndex urlOfBoard:BoardCategoryGuestSpring BoardType:BoardTypeList];
+        NSString *guestChatter = @"게천잡담";
+        NSString *guestChatterUrl = [boardIndex urlOfBoard:BoardCategoryGuestChatter BoardType:BoardTypeList];
+        
+        boardIndexList = [[NSMutableArray alloc] init];
+        [boardIndexList addObject:[self boardIndexName:guestHeaven Url:guestHeavenUrl GuestType:GuestTypeHeaven]];
+        [boardIndexList addObject:[self boardIndexName:guestSpring Url:guestSpringUrl GuestType:GuestTypeChatter]];
+        [boardIndexList addObject:[self boardIndexName:guestChatter Url:guestChatterUrl GuestType:GuestTypeChatter]];
+        
+        [boardIndex release];
     }
     return self;
 }
@@ -51,6 +75,13 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)dealloc
+{
+    [boardIndexList release];
+    
+    [super dealloc];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -82,13 +113,13 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return NumberOfBoard;
+    return [boardIndexList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -101,7 +132,11 @@
     }
     
     // Configure the cell...
+    NSInteger row = indexPath.row;
     
+    BoardIndex *boardIndex = [boardIndexList objectAtIndex:row];
+    NSString *boardTitle = boardIndex.nameOfBoard;
+    cell.textLabel.text = boardTitle;
     return cell;
 }
 
@@ -149,13 +184,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    MasterViewController *masterViewController = [[MasterViewController alloc] init];
+    BoardIndex *boardIndex = [boardIndexList objectAtIndex:indexPath.row];
+    masterViewController.urlString = boardIndex.urlOfBoard;
+    masterViewController.title = boardIndex.nameOfBoard;
+    if (boardIndex.guestType == GuestTypeHeaven)
+        masterViewController.hrefString = HEAVEN_SERVER;
+    else
+        masterViewController.hrefString = CHATTER_SERVER;
+    
+    [self.navigationController pushViewController:masterViewController animated:YES];
+    [masterViewController release];
 }
 
 @end

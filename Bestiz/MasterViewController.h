@@ -13,10 +13,15 @@
 
 @interface MasterViewController : UITableViewController
 {
+    NSString *urlString;
+    NSString *hrefString;
+    
     NSMutableArray *hrefData;
     NSMutableArray *titleData;
 }
 
+@property (nonatomic, retain) NSString *urlString;
+@property (nonatomic, retain) NSString *hrefString;
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
 @end

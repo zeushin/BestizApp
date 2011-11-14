@@ -8,24 +8,38 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BoardIndexList : NSObject
+typedef enum
 {
-    NSString *boardNameOfGeustHeaven;
-    NSString *boardNameOfGuestSpring;
-    NSString *boardNameOfGuestChatter;
-    
-    NSString *urlOfGuestHeaven;
-    NSString *urlOfGuestSpring;
-    NSString *urlOfGuestChatter;
+    BoardCategoryGuestHeaven,
+    BoardCategoryGuestChatter,
+    BoardCategoryGuestSpring,
+    BoardCategoryGuestSummer
+} BoardCategory;
+
+typedef enum
+{
+    BoardTypeList,
+    BoardTypeConent
+} BoardType;
+
+typedef enum
+{
+    GuestTypeHeaven,
+    GuestTypeChatter
+} GuestType;
+
+@interface BoardIndex : NSObject
+{
+    NSString *nameOfBoard;
+    NSString *urlOfBoard;
+    GuestType guestType;
 }
 
-@property (nonatomic, readonly) NSString *boardNameOfGeustHeaven;
-@property (nonatomic, readonly) NSString *boardNameOfGuestSpring;
-@property (nonatomic, readonly) NSString *boardNameOfGuestChatter;
+@property (nonatomic, retain) NSString *nameOfBoard;
+@property (nonatomic, retain) NSString *urlOfBoard;
+@property (nonatomic) GuestType guestType;
 
-@property (nonatomic, readonly) NSString *urlOfGuestHeaven;
-@property (nonatomic, readonly) NSString *urlOfGuestSpring;
-@property (nonatomic, readonly) NSString *urlOfGuestChatter;
+- (NSString *)urlOfBoard:(BoardCategory)boardCategory BoardType:(BoardType)boardType;
 
 //=============================================================================//
 #define BOARD_LIST @"/zboard.php?"
@@ -41,8 +55,7 @@
 // 게잡의 봄 ID
 #define GUEST_CHATTER_SPRING_ID @"id=jb0901"
 // 게천 잡담 ID
-#define GUEST_HEAVEN_CHATTER @"id=jd1106"
+#define GUEST_HEAVEN_CHATTER_ID @"id=jd1106"
 //=============================================================================//
-
 
 @end

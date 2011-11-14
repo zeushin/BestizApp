@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A57A251F146F15010091DE45 /* BestizParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A57A251E146F15010091DE45 /* BestizParser.m */; };
 		A5DC87A1146049B800BA91A5 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DC87A0146049B800BA91A5 /* BaseViewController.m */; };
 		A5DC87A614608A8000BA91A5 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DC87A414608A8000BA91A5 /* MainTableViewController.m */; };
 		A5DC87A714608A8000BA91A5 /* MainTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5DC87A514608A8000BA91A5 /* MainTableViewController.xib */; };
-		A5DC87AA1460956700BA91A5 /* BoardIndexList.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DC87A91460956600BA91A5 /* BoardIndexList.m */; };
+		A5DC87AA1460956700BA91A5 /* BoardIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DC87A91460956600BA91A5 /* BoardIndex.m */; };
 		A5FBFCE7145EFBF500B45C7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBFCE6145EFBF500B45C7B /* UIKit.framework */; };
 		A5FBFCE9145EFBF500B45C7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBFCE8145EFBF500B45C7B /* Foundation.framework */; };
 		A5FBFCEB145EFBF500B45C7B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBFCEA145EFBF500B45C7B /* CoreGraphics.framework */; };
@@ -28,13 +29,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A57A251D146F15010091DE45 /* BestizParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BestizParser.h; sourceTree = "<group>"; };
+		A57A251E146F15010091DE45 /* BestizParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BestizParser.m; sourceTree = "<group>"; };
 		A5DC879F146049B800BA91A5 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		A5DC87A0146049B800BA91A5 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		A5DC87A314608A8000BA91A5 /* MainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
 		A5DC87A414608A8000BA91A5 /* MainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewController.m; sourceTree = "<group>"; };
 		A5DC87A514608A8000BA91A5 /* MainTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTableViewController.xib; sourceTree = "<group>"; };
-		A5DC87A81460956600BA91A5 /* BoardIndexList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardIndexList.h; sourceTree = "<group>"; };
-		A5DC87A91460956600BA91A5 /* BoardIndexList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardIndexList.m; sourceTree = "<group>"; };
+		A5DC87A81460956600BA91A5 /* BoardIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardIndex.h; sourceTree = "<group>"; };
+		A5DC87A91460956600BA91A5 /* BoardIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardIndex.m; sourceTree = "<group>"; };
 		A5FBFCE2145EFBF500B45C7B /* Bestiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bestiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5FBFCE6145EFBF500B45C7B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A5FBFCE8145EFBF500B45C7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -106,10 +109,12 @@
 				A5FBFD0F145EFC0500B45C7B /* HTMLParser */,
 				A5FBFCF5145EFBF500B45C7B /* AppDelegate.h */,
 				A5FBFCF6145EFBF500B45C7B /* AppDelegate.m */,
-				A5DC87A81460956600BA91A5 /* BoardIndexList.h */,
-				A5DC87A91460956600BA91A5 /* BoardIndexList.m */,
+				A5DC87A81460956600BA91A5 /* BoardIndex.h */,
+				A5DC87A91460956600BA91A5 /* BoardIndex.m */,
 				A5DC879F146049B800BA91A5 /* BaseViewController.h */,
 				A5DC87A0146049B800BA91A5 /* BaseViewController.m */,
+				A57A251D146F15010091DE45 /* BestizParser.h */,
+				A57A251E146F15010091DE45 /* BestizParser.m */,
 				A5DC87A314608A8000BA91A5 /* MainTableViewController.h */,
 				A5DC87A414608A8000BA91A5 /* MainTableViewController.m */,
 				A5DC87A514608A8000BA91A5 /* MainTableViewController.xib */,
@@ -222,7 +227,8 @@
 				A5FBFD15145EFC1C00B45C7B /* HTMLParser.m in Sources */,
 				A5DC87A1146049B800BA91A5 /* BaseViewController.m in Sources */,
 				A5DC87A614608A8000BA91A5 /* MainTableViewController.m in Sources */,
-				A5DC87AA1460956700BA91A5 /* BoardIndexList.m in Sources */,
+				A5DC87AA1460956700BA91A5 /* BoardIndex.m in Sources */,
+				A57A251F146F15010091DE45 /* BestizParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +297,10 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -309,8 +318,11 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -325,8 +337,10 @@
 				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2/**";
 				INFOPLIST_FILE = "Bestiz/Bestiz-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = /Developer/Platforms/iPhoneSimulatorOS.platform/Developer/SDKs/iPhoneSimulatorOS3.0.sdk/usr/lib;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -339,8 +353,10 @@
 				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2/**";
 				INFOPLIST_FILE = "Bestiz/Bestiz-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = /Developer/Platforms/iPhoneSimulatorOS.platform/Developer/SDKs/iPhoneSimulatorOS3.0.sdk/usr/lib;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
