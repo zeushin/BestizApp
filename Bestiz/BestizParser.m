@@ -7,7 +7,7 @@
 //
 
 #import "BestizParser.h"
-#import "HTMLParser.m"
+#import "HTMLParser.h"
 
 @implementation BestizParser
 
@@ -22,14 +22,38 @@
     return body;
 }
 
-- (NSArray *)parsingWithListOfURL:(NSURL *)url
+
+/////////////////////////////////////////
+// 게시글 목록을 배열로 투척 (title + href) //
+/////////////////////////////////////////
+
+- (NSMutableArray *)parsingWithListOfURL:(NSURL *)url
 {
     
     HTMLNode *body = [self parsingOfURL:url];
     NSArray *tableList = [body findChildrenWithAttribute:@"style" matchingName:@"word-break:break-all;" allowPartial:YES];
     
-    return tableList;
+    NSMutableArray *parsingData = [NSMutableArray array];
+    
+    for (int i = 0; i < [tableList count]; i++)
+    {
+        HTMLNode *titleNode = [tableList objectAtIndex:i];
+        
+        NSString *title = [titleNode allContents];
+        NSString *href = [NSString stringWithFormat:@"%@", [[titleNode findChildTag:@"a"] getAttributeNamed:@"href"]];
+        
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:title, @"title", href, @"href", nil];
+
+        [parsingData addObject:dic];
+    }
+    
+    return parsingData;
 }
+
+
+////////////////////////////
+// 게시글 내용을 문자열로 투척 //
+////////////////////////////
 
 - (NSString *)parsingWithContentOfURL:(NSURL *)url
 {

@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface MainTableViewController : UITableViewController
+@interface MainTableViewController : BaseViewController
 {
-    NSMutableArray *boardIndexList;
+    
 }
 
 @end

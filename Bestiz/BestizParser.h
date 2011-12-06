@@ -10,7 +10,7 @@
 
 @interface BestizParser : NSObject
 
-- (NSArray *)parsingWithListOfURL:(NSURL *)url;
+- (NSMutableArray *)parsingWithListOfURL:(NSURL *)url;
 - (NSString *)parsingWithContentOfURL:(NSURL *)url;
 
 @end

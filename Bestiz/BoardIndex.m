@@ -16,21 +16,30 @@
 {
     self = [super init];
     if (self) {
-        nameOfBoard = [[NSString alloc] init];
-        urlOfBoard = [[NSString alloc] init];
+//        nameOfBoard = [NSString string];
+//        urlOfBoard = [NSString string];
+    }
+    return self;
+}
+
+- (id)initWithNameOfBoard:(NSString *)name urlOfBoard:(NSString *)url typeOfGuest:(GuestType)type
+{
+    self = [self init];
+    if (self) {
+        self.nameOfBoard = name;
+        self.urlOfBoard = url;
+        self.guestType = type;
+        NSLog(@"%@%@%@", nameOfBoard, urlOfBoard, guestType);
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [nameOfBoard release];
-    [urlOfBoard release];
-    
     [super dealloc];
 }
 
-- (NSString *)urlOfBoard:(BoardCategory)boardCategory BoardType:(BoardType)boardType
+- (NSString *)urlOfBoard:(BoardCategory)boardCategory boardType:(BoardType)boardType
 {
     NSString *boardUrl;
 
@@ -41,31 +50,39 @@
                 boardUrl = [NSString stringWithFormat:@"%@%@%@", HEAVEN_SERVER, BOARD_LIST, GUEST_HEAVEN_BOARD_ID];
                 break;
                 
+            case BoardCategoryGuestChatter:
+                boardUrl = [NSString stringWithFormat:@"%@%@%@", CHATTER_SERVER, BOARD_LIST, GUEST_HEAVEN_CHATTER_ID];
+                break;
+                
             case BoardCategoryGuestSpring:
                 boardUrl = [NSString stringWithFormat:@"%@%@%@", CHATTER_SERVER, BOARD_LIST, GUEST_CHATTER_SPRING_ID];
                 break;
                 
-            case BoardCategoryGuestChatter:
-                boardUrl = [NSString stringWithFormat:@"%@%@%@", CHATTER_SERVER, BOARD_LIST, GUEST_HEAVEN_CHATTER_ID];
+            case BoardCategoryGuestSummer:
+                boardUrl = [NSString stringWithFormat:@"%@%@%@", CHATTER_SERVER, BOARD_LIST, GUEST_CHATTER_SUMMER_ID];
                 break;
                 
             default:
                 break;
         }
     }
-    else if (boardType == BoardTypeConent)
+    else if (boardType == BoardTypeContents)
     {
         switch (boardCategory) {
             case BoardCategoryGuestHeaven:
                 boardUrl = [NSString stringWithFormat:@"%@%@%@", HEAVEN_SERVER, BOARD_CONTENT, GUEST_HEAVEN_BOARD_ID];
                 break;
                 
+            case BoardCategoryGuestChatter:
+                boardUrl = [NSString stringWithFormat:@"%@%@%@", CHATTER_SERVER, BOARD_CONTENT, GUEST_HEAVEN_CHATTER_ID];
+                break;
+                
             case BoardCategoryGuestSpring:
                 boardUrl = [NSString stringWithFormat:@"%@%@%@", CHATTER_SERVER, BOARD_CONTENT, GUEST_CHATTER_SPRING_ID];
                 break;
                 
-            case BoardCategoryGuestChatter:
-                boardUrl = [NSString stringWithFormat:@"%@%@%@", HEAVEN_SERVER, BOARD_CONTENT, GUEST_HEAVEN_CHATTER_ID];
+            case BoardCategoryGuestSummer:
+                boardUrl = [NSString stringWithFormat:@"%@%@%@", CHATTER_SERVER, BOARD_CONTENT, GUEST_CHATTER_SUMMER_ID];
                 break;
                 
             default:

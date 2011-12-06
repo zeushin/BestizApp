@@ -9,23 +9,23 @@
 #import <Foundation/Foundation.h>
 
 typedef enum
-{
-    BoardCategoryGuestHeaven,
-    BoardCategoryGuestChatter,
-    BoardCategoryGuestSpring,
-    BoardCategoryGuestSummer
+{ // 게시판종류
+    BoardCategoryGuestHeaven, // 게스트 천국
+    BoardCategoryGuestChatter, // 게스트 잡담
+    BoardCategoryGuestSpring, // 게잡의 봄
+    BoardCategoryGuestSummer // 게잡의 여름
 } BoardCategory;
 
 typedef enum
-{
-    BoardTypeList,
-    BoardTypeConent
+{ // 게시물 형식
+    BoardTypeList, // 리스트
+    BoardTypeContents // 본문
 } BoardType;
 
 typedef enum
-{
-    GuestTypeHeaven,
-    GuestTypeChatter
+{ // 게시판 서버 종류
+    GuestTypeHeaven, // 천국서버
+    GuestTypeChatter // 잡담서버
 } GuestType;
 
 @interface BoardIndex : NSObject
@@ -39,7 +39,8 @@ typedef enum
 @property (nonatomic, retain) NSString *urlOfBoard;
 @property (nonatomic) GuestType guestType;
 
-- (NSString *)urlOfBoard:(BoardCategory)boardCategory BoardType:(BoardType)boardType;
+- (id)initWithNameOfBoard:(NSString *)name urlOfBoard:(NSString *)url typeOfGuest:(GuestType)type;
+- (NSString *)urlOfBoard:(BoardCategory)boardCategory boardType:(BoardType)boardType;
 
 //=============================================================================//
 #define BOARD_LIST @"/zboard.php?"
@@ -52,10 +53,12 @@ typedef enum
 //-----------------------------------------------------------------------------//
 // 게스트 천국 ID
 #define GUEST_HEAVEN_BOARD_ID @"id=gworld0707"
-// 게잡의 봄 ID
-#define GUEST_CHATTER_SPRING_ID @"id=jb0901"
 // 게천 잡담 ID
 #define GUEST_HEAVEN_CHATTER_ID @"id=jd1106"
+// 게잡의 봄 ID
+#define GUEST_CHATTER_SPRING_ID @"id=jb0901"
+// 게잡의 여름 ID
+#define GUEST_CHATTER_SUMMER_ID @"id=jy0807"
 //=============================================================================//
 
 @end
