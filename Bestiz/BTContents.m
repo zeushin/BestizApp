@@ -2,31 +2,27 @@
 //  BTComment.m
 //  Bestiz
 //
-//  Created by Shin Bumcheol on 12/19/11.
+//  Created by Shin Bumcheol on 12/3/11.
 //  Copyright (c) 2011 BananaWiki. All rights reserved.
 //
 
-#import "BTComment.h"
+#import "BTContents.h"
 
-@implementation BTComment
+@implementation BTContents
 
-@synthesize name;
-@synthesize comment;
-@synthesize ip;
+@synthesize contents;
 
 - (void)dealloc
 {
-    [name release];
-    [comment release];
-    [ip release];
+    [contents release];
     
     [super dealloc];
 }
 
-+ (void)getComment:(BoardCategory)board url:(NSString *)harfURL delegate:(id <BTRequesterDelegate>)delegate
++ (void)getContents:(BoardCategory)board url:(NSString *)harfURL delegate:(id <BTRequesterDelegate>)delegate
 {
-    NSString *urlString = nil;
     BTBoardIndex *boardIndex = [[BTBoardIndex alloc] init];
+    NSString *urlString = nil;
     
     switch (board) {
         case BoardCategoryGuestHeaven:
@@ -55,7 +51,8 @@
         requester.delegate = delegate;
         requester.url = urlString;
         requester.requestMehod = BTRequestMethodGET;
-        requester.boardType = BoardTypeComment;
+        requester.boardType = BoardTypeContents;
+        requester.page = 0;
         [requester request];
     }
 }

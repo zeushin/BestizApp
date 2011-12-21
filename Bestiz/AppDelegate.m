@@ -7,21 +7,17 @@
 //
 
 #import "AppDelegate.h"
-#import "MainTableViewController.h"
-
-#import "DetailViewController.h"
+#import "BTMainTableViewController.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
 @synthesize navigationController = _navigationController;
-@synthesize splitViewController = _splitViewController;
 
 - (void)dealloc
 {
     [_window release];
     [_navigationController release];
-    [_splitViewController release];
     [super dealloc];
 }
 
@@ -29,9 +25,10 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-    MainTableViewController *mainTableViewController = [[[MainTableViewController alloc] init] autorelease];
-    self.navigationController = [[[UINavigationController alloc] initWithRootViewController:mainTableViewController] autorelease];
+    BTMainTableViewController *mainTableViewController = [[BTMainTableViewController alloc] init];
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:mainTableViewController];
     self.window.rootViewController = self.navigationController;
+    [mainTableViewController release];
 
     [self.window makeKeyAndVisible];
     return YES;

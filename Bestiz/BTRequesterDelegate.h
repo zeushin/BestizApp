@@ -8,5 +8,5 @@
 
 @protocol BTRequesterDelegate
 @optional
-- (void)requestFinishedWithResultCode:(NSInteger)code tag:(NSString *)tag results:(NSMutableDictionary *)results;
+- (void)requestFinishedWithResults:(NSMutableArray *)results;
 @end

@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "ASIFormDataRequest.h"
 #import "BTRequesterDelegate.h"
+#import "BTBoardIndex.h"
 
 typedef enum {
-    BTReqeustMethodGET,
+    BTRequestMethodGET,
     BTRequestMethodPOST,
-    BTRequestMethodDELTE,
+    BTRequestMethodDELETE,
     BTRequestMethodUPDATE
 } BTRequestMethod;
 
@@ -26,14 +27,16 @@ typedef enum {
     NSUInteger _page;
     NSOperationQueue *_queue;
     BTRequestMethod _requestMehod;
+    BoardType _boardType;
 }
 
 @property (nonatomic, assign) id <BTRequesterDelegate> delegate;
 @property (nonatomic, assign) Class requesterClass;
 @property (nonatomic, retain) NSString *url;
-@property (nonatomic) NSUInteger page;
+@property (nonatomic, assign) NSUInteger page;
 @property (nonatomic, retain) NSOperationQueue *queue;
 @property (nonatomic) BTRequestMethod requestMehod;
+@property (nonatomic) BoardType boardType;
 
 + (id)requester;
 - (void)request;

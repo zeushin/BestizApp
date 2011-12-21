@@ -7,15 +7,8 @@
 //
 
 #import "BTBaseModel.h"
-#import "BoardIndex.h"
+#import "BTBoardIndex.h"
 #import "BTRequester.h"
-//typedef enum
-//{
-//    GeustHeaven,
-//    GuestChatter,
-//    GuestSpring,
-//    GuestSummer
-//} Board;
 
 @protocol BTRequestableModelProtocol
 

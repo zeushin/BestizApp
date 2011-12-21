@@ -32,4 +32,6 @@
 @property (nonatomic, retain) NSURL *url;
 @property (nonatomic, retain) NSString *contents;
 
++ (void)getList:(BoardCategory)board withPage:(NSUInteger)page delegate:(id <BTRequesterDelegate>)delegate;
+
 @end

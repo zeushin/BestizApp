@@ -9,15 +9,7 @@
 /* Begin PBXBuildFile section */
 		A5115EA4148A01C3001B4493 /* BTBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A5115EA3148A01C3001B4493 /* BTBaseModel.m */; };
 		A5115EA8148A01F1001B4493 /* BTRequestableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A5115EA7148A01F1001B4493 /* BTRequestableModel.m */; };
-		A5115EAB148A02DE001B4493 /* BTComment.m in Sources */ = {isa = PBXBuildFile; fileRef = A5115EAA148A02DE001B4493 /* BTComment.m */; };
-		A5115EAE148A060F001B4493 /* BTGuestHeaven.m in Sources */ = {isa = PBXBuildFile; fileRef = A5115EAD148A060F001B4493 /* BTGuestHeaven.m */; };
-		A5115EB1148A0644001B4493 /* BTGuestChatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A5115EB0148A0644001B4493 /* BTGuestChatter.m */; };
-		A5115EB4148A0656001B4493 /* BTGuestSpring.m in Sources */ = {isa = PBXBuildFile; fileRef = A5115EB3148A0656001B4493 /* BTGuestSpring.m */; };
-		A5115EB7148A0668001B4493 /* BTGuestSummer.m in Sources */ = {isa = PBXBuildFile; fileRef = A5115EB6148A0668001B4493 /* BTGuestSummer.m */; };
-		A5115EBA148A06B8001B4493 /* BTGuestHeavenComment.m in Sources */ = {isa = PBXBuildFile; fileRef = A5115EB9148A06B7001B4493 /* BTGuestHeavenComment.m */; };
-		A5115EBD148A06C7001B4493 /* BTGuestChatterComment.m in Sources */ = {isa = PBXBuildFile; fileRef = A5115EBC148A06C7001B4493 /* BTGuestChatterComment.m */; };
-		A5115EC0148A06DA001B4493 /* BTGuestSpringComment.m in Sources */ = {isa = PBXBuildFile; fileRef = A5115EBF148A06DA001B4493 /* BTGuestSpringComment.m */; };
-		A5115EC3148A06EA001B4493 /* BTGuestSummerComment.m in Sources */ = {isa = PBXBuildFile; fileRef = A5115EC2148A06E9001B4493 /* BTGuestSummerComment.m */; };
+		A5115EAB148A02DE001B4493 /* BTContents.m in Sources */ = {isa = PBXBuildFile; fileRef = A5115EAA148A02DE001B4493 /* BTContents.m */; };
 		A5115EC8148CA7C3001B4493 /* BTRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = A5115EC7148CA7C3001B4493 /* BTRequester.m */; };
 		A5115EE2148CA80D001B4493 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = A5115ECB148CA80D001B4493 /* ASIAuthenticationDialog.m */; };
 		A5115EE3148CA80D001B4493 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = A5115ECE148CA80D001B4493 /* ASIDataCompressor.m */; };
@@ -29,29 +21,32 @@
 		A5115EE9148CA80D001B4493 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = A5115EDC148CA80D001B4493 /* ASIInputStream.m */; };
 		A5115EEA148CA80D001B4493 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A5115EDE148CA80D001B4493 /* ASINetworkQueue.m */; };
 		A5115EEB148CA80D001B4493 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A5115EE1148CA80D001B4493 /* Reachability.m */; };
-		A534D00D1477344200881489 /* MainContentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A534D00B1477344200881489 /* MainContentsViewController.m */; };
-		A534D00E1477344200881489 /* MainContentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A534D00C1477344200881489 /* MainContentsViewController.xib */; };
-		A566CA831476192400ACCD01 /* BoardListViewContoller.m in Sources */ = {isa = PBXBuildFile; fileRef = A566CA811476192300ACCD01 /* BoardListViewContoller.m */; };
-		A566CA841476192400ACCD01 /* BoardListViewContoller.xib in Resources */ = {isa = PBXBuildFile; fileRef = A566CA821476192400ACCD01 /* BoardListViewContoller.xib */; };
+		A5267A8914A1BC6300453DB3 /* BTContentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5267A8714A1BC6300453DB3 /* BTContentsViewController.m */; };
+		A5267A8A14A1BC6300453DB3 /* BTContentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5267A8814A1BC6300453DB3 /* BTContentsViewController.xib */; };
+		A52955BD14948AFF0008CDB0 /* BTBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A52955BC14948AFF0008CDB0 /* BTBaseParser.m */; };
+		A52955C11494FC570008CDB0 /* BTBoardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A52955C01494FC570008CDB0 /* BTBoardParser.m */; };
+		A52955C314950F6B0008CDB0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A52955C214950F6B0008CDB0 /* CFNetwork.framework */; };
+		A52955C514950F730008CDB0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A52955C414950F730008CDB0 /* SystemConfiguration.framework */; };
+		A52955C714950F850008CDB0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A52955C614950F850008CDB0 /* MobileCoreServices.framework */; };
+		A52955C914950F980008CDB0 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A52955C814950F980008CDB0 /* libz.1.2.5.dylib */; };
+		A52955CD14951DBC0008CDB0 /* BTContentsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A52955CC14951DBC0008CDB0 /* BTContentsParser.m */; };
+		A539FFC5149F251300B5DB9D /* BTComment.m in Sources */ = {isa = PBXBuildFile; fileRef = A539FFC4149F251300B5DB9D /* BTComment.m */; };
+		A539FFCC149F3D3B00B5DB9D /* BTCommentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A539FFCB149F3D3B00B5DB9D /* BTCommentParser.m */; };
+		A539FFCF149F72E500B5DB9D /* BTListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A539FFCE149F72E400B5DB9D /* BTListViewController.m */; };
+		A539FFD6149F739300B5DB9D /* BTMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A539FFD4149F739100B5DB9D /* BTMainTableViewController.m */; };
+		A539FFD7149F739300B5DB9D /* BTMainTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A539FFD5149F739200B5DB9D /* BTMainTableViewController.xib */; };
+		A54BEC8114A0ED2D006BACD5 /* BTBoardListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A54BEC7F14A0ED2C006BACD5 /* BTBoardListViewController.m */; };
+		A54BEC8214A0ED2D006BACD5 /* BTBoardListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A54BEC8014A0ED2C006BACD5 /* BTBoardListViewController.xib */; };
 		A57A251F146F15010091DE45 /* BestizParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A57A251E146F15010091DE45 /* BestizParser.m */; };
 		A593A01E147F2C4E007D68FD /* BTBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = A593A01D147F2C4E007D68FD /* BTBoard.m */; };
-		A59FDCC11472CB8900AA6F23 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A59FDCBF1472CB8900AA6F23 /* BaseViewController.m */; };
-		A59FDCC61472D57900AA6F23 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A59FDCC41472D57900AA6F23 /* ListViewController.m */; };
-		A5DC87A614608A8000BA91A5 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DC87A414608A8000BA91A5 /* MainTableViewController.m */; };
-		A5DC87A714608A8000BA91A5 /* MainTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5DC87A514608A8000BA91A5 /* MainTableViewController.xib */; };
-		A5DC87AA1460956700BA91A5 /* BoardIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DC87A91460956600BA91A5 /* BoardIndex.m */; };
+		A59FDCC11472CB8900AA6F23 /* BTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A59FDCBF1472CB8900AA6F23 /* BTBaseViewController.m */; };
+		A5DC87AA1460956700BA91A5 /* BTBoardIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DC87A91460956600BA91A5 /* BTBoardIndex.m */; };
 		A5FBFCE7145EFBF500B45C7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBFCE6145EFBF500B45C7B /* UIKit.framework */; };
 		A5FBFCE9145EFBF500B45C7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBFCE8145EFBF500B45C7B /* Foundation.framework */; };
 		A5FBFCEB145EFBF500B45C7B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FBFCEA145EFBF500B45C7B /* CoreGraphics.framework */; };
 		A5FBFCF1145EFBF500B45C7B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5FBFCEF145EFBF500B45C7B /* InfoPlist.strings */; };
 		A5FBFCF3145EFBF500B45C7B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FBFCF2145EFBF500B45C7B /* main.m */; };
 		A5FBFCF7145EFBF500B45C7B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FBFCF6145EFBF500B45C7B /* AppDelegate.m */; };
-		A5FBFCFA145EFBF500B45C7B /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FBFCF9145EFBF500B45C7B /* MasterViewController.m */; };
-		A5FBFCFD145EFBF500B45C7B /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FBFCFC145EFBF500B45C7B /* DetailViewController.m */; };
-		A5FBFD00145EFBF500B45C7B /* MasterViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5FBFCFE145EFBF500B45C7B /* MasterViewController_iPhone.xib */; };
-		A5FBFD03145EFBF500B45C7B /* MasterViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5FBFD01145EFBF500B45C7B /* MasterViewController_iPad.xib */; };
-		A5FBFD06145EFBF500B45C7B /* DetailViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5FBFD04145EFBF500B45C7B /* DetailViewController_iPhone.xib */; };
-		A5FBFD09145EFBF500B45C7B /* DetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5FBFD07145EFBF500B45C7B /* DetailViewController_iPad.xib */; };
 		A5FBFD14145EFC1C00B45C7B /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FBFD11145EFC1C00B45C7B /* HTMLNode.m */; };
 		A5FBFD15145EFC1C00B45C7B /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FBFD13145EFC1C00B45C7B /* HTMLParser.m */; };
 /* End PBXBuildFile section */
@@ -61,24 +56,8 @@
 		A5115EA3148A01C3001B4493 /* BTBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBaseModel.m; sourceTree = "<group>"; };
 		A5115EA6148A01F0001B4493 /* BTRequestableModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRequestableModel.h; sourceTree = "<group>"; };
 		A5115EA7148A01F1001B4493 /* BTRequestableModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRequestableModel.m; sourceTree = "<group>"; };
-		A5115EA9148A02DE001B4493 /* BTComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTComment.h; sourceTree = "<group>"; };
-		A5115EAA148A02DE001B4493 /* BTComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTComment.m; sourceTree = "<group>"; };
-		A5115EAC148A060F001B4493 /* BTGuestHeaven.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTGuestHeaven.h; sourceTree = "<group>"; };
-		A5115EAD148A060F001B4493 /* BTGuestHeaven.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTGuestHeaven.m; sourceTree = "<group>"; };
-		A5115EAF148A0644001B4493 /* BTGuestChatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTGuestChatter.h; sourceTree = "<group>"; };
-		A5115EB0148A0644001B4493 /* BTGuestChatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTGuestChatter.m; sourceTree = "<group>"; };
-		A5115EB2148A0656001B4493 /* BTGuestSpring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTGuestSpring.h; sourceTree = "<group>"; };
-		A5115EB3148A0656001B4493 /* BTGuestSpring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTGuestSpring.m; sourceTree = "<group>"; };
-		A5115EB5148A0667001B4493 /* BTGuestSummer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTGuestSummer.h; sourceTree = "<group>"; };
-		A5115EB6148A0668001B4493 /* BTGuestSummer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTGuestSummer.m; sourceTree = "<group>"; };
-		A5115EB8148A06B7001B4493 /* BTGuestHeavenComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTGuestHeavenComment.h; sourceTree = "<group>"; };
-		A5115EB9148A06B7001B4493 /* BTGuestHeavenComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTGuestHeavenComment.m; sourceTree = "<group>"; };
-		A5115EBB148A06C6001B4493 /* BTGuestChatterComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTGuestChatterComment.h; sourceTree = "<group>"; };
-		A5115EBC148A06C7001B4493 /* BTGuestChatterComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTGuestChatterComment.m; sourceTree = "<group>"; };
-		A5115EBE148A06D9001B4493 /* BTGuestSpringComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTGuestSpringComment.h; sourceTree = "<group>"; };
-		A5115EBF148A06DA001B4493 /* BTGuestSpringComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTGuestSpringComment.m; sourceTree = "<group>"; };
-		A5115EC1148A06E8001B4493 /* BTGuestSummerComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTGuestSummerComment.h; sourceTree = "<group>"; };
-		A5115EC2148A06E9001B4493 /* BTGuestSummerComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTGuestSummerComment.m; sourceTree = "<group>"; };
+		A5115EA9148A02DE001B4493 /* BTContents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTContents.h; sourceTree = "<group>"; };
+		A5115EAA148A02DE001B4493 /* BTContents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTContents.m; sourceTree = "<group>"; };
 		A5115EC6148CA7C3001B4493 /* BTRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRequester.h; sourceTree = "<group>"; };
 		A5115EC7148CA7C3001B4493 /* BTRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRequester.m; sourceTree = "<group>"; };
 		A5115ECA148CA80D001B4493 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
@@ -106,25 +85,40 @@
 		A5115EE0148CA80D001B4493 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		A5115EE1148CA80D001B4493 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		A5115EEC148CA92A001B4493 /* BTRequesterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRequesterDelegate.h; sourceTree = "<group>"; };
-		A534D00A1477344200881489 /* MainContentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainContentsViewController.h; sourceTree = "<group>"; };
-		A534D00B1477344200881489 /* MainContentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainContentsViewController.m; sourceTree = "<group>"; };
-		A534D00C1477344200881489 /* MainContentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainContentsViewController.xib; sourceTree = "<group>"; };
-		A566CA801476192300ACCD01 /* BoardListViewContoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardListViewContoller.h; sourceTree = "<group>"; };
-		A566CA811476192300ACCD01 /* BoardListViewContoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardListViewContoller.m; sourceTree = "<group>"; };
-		A566CA821476192400ACCD01 /* BoardListViewContoller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoardListViewContoller.xib; sourceTree = "<group>"; };
+		A5267A8614A1BC6300453DB3 /* BTContentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTContentsViewController.h; sourceTree = "<group>"; };
+		A5267A8714A1BC6300453DB3 /* BTContentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTContentsViewController.m; sourceTree = "<group>"; };
+		A5267A8814A1BC6300453DB3 /* BTContentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTContentsViewController.xib; sourceTree = "<group>"; };
+		A52955BB14948AFF0008CDB0 /* BTBaseParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBaseParser.h; sourceTree = "<group>"; };
+		A52955BC14948AFF0008CDB0 /* BTBaseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBaseParser.m; sourceTree = "<group>"; };
+		A52955BF1494FC570008CDB0 /* BTBoardParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBoardParser.h; sourceTree = "<group>"; };
+		A52955C01494FC570008CDB0 /* BTBoardParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBoardParser.m; sourceTree = "<group>"; };
+		A52955C214950F6B0008CDB0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		A52955C414950F730008CDB0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A52955C614950F850008CDB0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		A52955C814950F980008CDB0 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		A52955CA149511880008CDB0 /* BTKeyForModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTKeyForModel.h; sourceTree = "<group>"; };
+		A52955CB14951DBC0008CDB0 /* BTContentsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTContentsParser.h; sourceTree = "<group>"; };
+		A52955CC14951DBC0008CDB0 /* BTContentsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTContentsParser.m; sourceTree = "<group>"; };
+		A539FFC3149F251300B5DB9D /* BTComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTComment.h; sourceTree = "<group>"; };
+		A539FFC4149F251300B5DB9D /* BTComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTComment.m; sourceTree = "<group>"; };
+		A539FFCA149F3D3B00B5DB9D /* BTCommentParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCommentParser.h; sourceTree = "<group>"; };
+		A539FFCB149F3D3B00B5DB9D /* BTCommentParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCommentParser.m; sourceTree = "<group>"; };
+		A539FFCD149F72E300B5DB9D /* BTListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTListViewController.h; sourceTree = "<group>"; };
+		A539FFCE149F72E400B5DB9D /* BTListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTListViewController.m; sourceTree = "<group>"; };
+		A539FFD3149F739100B5DB9D /* BTMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTMainTableViewController.h; sourceTree = "<group>"; };
+		A539FFD4149F739100B5DB9D /* BTMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMainTableViewController.m; sourceTree = "<group>"; };
+		A539FFD5149F739200B5DB9D /* BTMainTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTMainTableViewController.xib; sourceTree = "<group>"; };
+		A54BEC7E14A0ED2C006BACD5 /* BTBoardListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBoardListViewController.h; sourceTree = "<group>"; };
+		A54BEC7F14A0ED2C006BACD5 /* BTBoardListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBoardListViewController.m; sourceTree = "<group>"; };
+		A54BEC8014A0ED2C006BACD5 /* BTBoardListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTBoardListViewController.xib; sourceTree = "<group>"; };
 		A57A251D146F15010091DE45 /* BestizParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BestizParser.h; sourceTree = "<group>"; };
 		A57A251E146F15010091DE45 /* BestizParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BestizParser.m; sourceTree = "<group>"; };
 		A593A01C147F2C4E007D68FD /* BTBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBoard.h; sourceTree = "<group>"; };
 		A593A01D147F2C4E007D68FD /* BTBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBoard.m; sourceTree = "<group>"; };
-		A59FDCBE1472CB8900AA6F23 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
-		A59FDCBF1472CB8900AA6F23 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		A59FDCC31472D57800AA6F23 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
-		A59FDCC41472D57900AA6F23 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
-		A5DC87A314608A8000BA91A5 /* MainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
-		A5DC87A414608A8000BA91A5 /* MainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewController.m; sourceTree = "<group>"; };
-		A5DC87A514608A8000BA91A5 /* MainTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTableViewController.xib; sourceTree = "<group>"; };
-		A5DC87A81460956600BA91A5 /* BoardIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardIndex.h; sourceTree = "<group>"; };
-		A5DC87A91460956600BA91A5 /* BoardIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardIndex.m; sourceTree = "<group>"; };
+		A59FDCBE1472CB8900AA6F23 /* BTBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBaseViewController.h; sourceTree = "<group>"; };
+		A59FDCBF1472CB8900AA6F23 /* BTBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBaseViewController.m; sourceTree = "<group>"; };
+		A5DC87A81460956600BA91A5 /* BTBoardIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBoardIndex.h; sourceTree = "<group>"; };
+		A5DC87A91460956600BA91A5 /* BTBoardIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBoardIndex.m; sourceTree = "<group>"; };
 		A5FBFCE2145EFBF500B45C7B /* Bestiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bestiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5FBFCE6145EFBF500B45C7B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A5FBFCE8145EFBF500B45C7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -135,14 +129,6 @@
 		A5FBFCF4145EFBF500B45C7B /* Bestiz-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bestiz-Prefix.pch"; sourceTree = "<group>"; };
 		A5FBFCF5145EFBF500B45C7B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A5FBFCF6145EFBF500B45C7B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A5FBFCF8145EFBF500B45C7B /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		A5FBFCF9145EFBF500B45C7B /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		A5FBFCFB145EFBF500B45C7B /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		A5FBFCFC145EFBF500B45C7B /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		A5FBFCFF145EFBF500B45C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController_iPhone.xib; sourceTree = "<group>"; };
-		A5FBFD02145EFBF500B45C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController_iPad.xib; sourceTree = "<group>"; };
-		A5FBFD05145EFBF500B45C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController_iPhone.xib; sourceTree = "<group>"; };
-		A5FBFD08145EFBF500B45C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController_iPad.xib; sourceTree = "<group>"; };
 		A5FBFD10145EFC1C00B45C7B /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
 		A5FBFD11145EFC1C00B45C7B /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLNode.m; sourceTree = "<group>"; };
 		A5FBFD12145EFC1C00B45C7B /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
@@ -154,6 +140,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A52955C914950F980008CDB0 /* libz.1.2.5.dylib in Frameworks */,
+				A52955C714950F850008CDB0 /* MobileCoreServices.framework in Frameworks */,
+				A52955C514950F730008CDB0 /* SystemConfiguration.framework in Frameworks */,
+				A52955C314950F6B0008CDB0 /* CFNetwork.framework in Frameworks */,
 				A5FBFCE7145EFBF500B45C7B /* UIKit.framework in Frameworks */,
 				A5FBFCE9145EFBF500B45C7B /* Foundation.framework in Frameworks */,
 				A5FBFCEB145EFBF500B45C7B /* CoreGraphics.framework in Frameworks */,
@@ -166,6 +156,16 @@
 		A5115EC4148A5C33001B4493 /* BTParser */ = {
 			isa = PBXGroup;
 			children = (
+				A52955BB14948AFF0008CDB0 /* BTBaseParser.h */,
+				A52955BC14948AFF0008CDB0 /* BTBaseParser.m */,
+				A52955BF1494FC570008CDB0 /* BTBoardParser.h */,
+				A52955C01494FC570008CDB0 /* BTBoardParser.m */,
+				A52955CB14951DBC0008CDB0 /* BTContentsParser.h */,
+				A52955CC14951DBC0008CDB0 /* BTContentsParser.m */,
+				A539FFCA149F3D3B00B5DB9D /* BTCommentParser.h */,
+				A539FFCB149F3D3B00B5DB9D /* BTCommentParser.m */,
+				A57A251D146F15010091DE45 /* BestizParser.h */,
+				A57A251E146F15010091DE45 /* BestizParser.m */,
 			);
 			name = BTParser;
 			sourceTree = "<group>";
@@ -214,8 +214,8 @@
 		A593A019147F284B007D68FD /* BTUtil */ = {
 			isa = PBXGroup;
 			children = (
-				A5DC87A81460956600BA91A5 /* BoardIndex.h */,
-				A5DC87A91460956600BA91A5 /* BoardIndex.m */,
+				A5DC87A81460956600BA91A5 /* BTBoardIndex.h */,
+				A5DC87A91460956600BA91A5 /* BTBoardIndex.m */,
 				A5115EC9148CA80D001B4493 /* ASIHttpRequest */,
 				A5FBFD0F145EFC0500B45C7B /* HTMLParser */,
 			);
@@ -231,24 +231,11 @@
 				A5115EA7148A01F1001B4493 /* BTRequestableModel.m */,
 				A593A01C147F2C4E007D68FD /* BTBoard.h */,
 				A593A01D147F2C4E007D68FD /* BTBoard.m */,
-				A5115EAC148A060F001B4493 /* BTGuestHeaven.h */,
-				A5115EAD148A060F001B4493 /* BTGuestHeaven.m */,
-				A5115EAF148A0644001B4493 /* BTGuestChatter.h */,
-				A5115EB0148A0644001B4493 /* BTGuestChatter.m */,
-				A5115EB2148A0656001B4493 /* BTGuestSpring.h */,
-				A5115EB3148A0656001B4493 /* BTGuestSpring.m */,
-				A5115EB5148A0667001B4493 /* BTGuestSummer.h */,
-				A5115EB6148A0668001B4493 /* BTGuestSummer.m */,
-				A5115EA9148A02DE001B4493 /* BTComment.h */,
-				A5115EAA148A02DE001B4493 /* BTComment.m */,
-				A5115EB8148A06B7001B4493 /* BTGuestHeavenComment.h */,
-				A5115EB9148A06B7001B4493 /* BTGuestHeavenComment.m */,
-				A5115EBB148A06C6001B4493 /* BTGuestChatterComment.h */,
-				A5115EBC148A06C7001B4493 /* BTGuestChatterComment.m */,
-				A5115EBE148A06D9001B4493 /* BTGuestSpringComment.h */,
-				A5115EBF148A06DA001B4493 /* BTGuestSpringComment.m */,
-				A5115EC1148A06E8001B4493 /* BTGuestSummerComment.h */,
-				A5115EC2148A06E9001B4493 /* BTGuestSummerComment.m */,
+				A5115EA9148A02DE001B4493 /* BTContents.h */,
+				A5115EAA148A02DE001B4493 /* BTContents.m */,
+				A539FFC3149F251300B5DB9D /* BTComment.h */,
+				A539FFC4149F251300B5DB9D /* BTComment.m */,
+				A52955CA149511880008CDB0 /* BTKeyForModel.h */,
 			);
 			name = BTModel;
 			sourceTree = "<group>";
@@ -256,6 +243,10 @@
 		A5FBFCD7145EFBF400B45C7B = {
 			isa = PBXGroup;
 			children = (
+				A52955C814950F980008CDB0 /* libz.1.2.5.dylib */,
+				A52955C614950F850008CDB0 /* MobileCoreServices.framework */,
+				A52955C414950F730008CDB0 /* SystemConfiguration.framework */,
+				A52955C214950F6B0008CDB0 /* CFNetwork.framework */,
 				A5FBFCEC145EFBF500B45C7B /* Bestiz */,
 				A5FBFCE5145EFBF500B45C7B /* Frameworks */,
 				A5FBFCE3145EFBF500B45C7B /* Products */,
@@ -289,29 +280,19 @@
 				A593A019147F284B007D68FD /* BTUtil */,
 				A5FBFCF5145EFBF500B45C7B /* AppDelegate.h */,
 				A5FBFCF6145EFBF500B45C7B /* AppDelegate.m */,
-				A57A251D146F15010091DE45 /* BestizParser.h */,
-				A57A251E146F15010091DE45 /* BestizParser.m */,
-				A59FDCBE1472CB8900AA6F23 /* BaseViewController.h */,
-				A59FDCBF1472CB8900AA6F23 /* BaseViewController.m */,
-				A59FDCC31472D57800AA6F23 /* ListViewController.h */,
-				A59FDCC41472D57900AA6F23 /* ListViewController.m */,
-				A5DC87A314608A8000BA91A5 /* MainTableViewController.h */,
-				A5DC87A414608A8000BA91A5 /* MainTableViewController.m */,
-				A5DC87A514608A8000BA91A5 /* MainTableViewController.xib */,
-				A566CA801476192300ACCD01 /* BoardListViewContoller.h */,
-				A566CA811476192300ACCD01 /* BoardListViewContoller.m */,
-				A566CA821476192400ACCD01 /* BoardListViewContoller.xib */,
-				A534D00A1477344200881489 /* MainContentsViewController.h */,
-				A534D00B1477344200881489 /* MainContentsViewController.m */,
-				A534D00C1477344200881489 /* MainContentsViewController.xib */,
-				A5FBFCF8145EFBF500B45C7B /* MasterViewController.h */,
-				A5FBFCF9145EFBF500B45C7B /* MasterViewController.m */,
-				A5FBFCFB145EFBF500B45C7B /* DetailViewController.h */,
-				A5FBFCFC145EFBF500B45C7B /* DetailViewController.m */,
-				A5FBFCFE145EFBF500B45C7B /* MasterViewController_iPhone.xib */,
-				A5FBFD01145EFBF500B45C7B /* MasterViewController_iPad.xib */,
-				A5FBFD04145EFBF500B45C7B /* DetailViewController_iPhone.xib */,
-				A5FBFD07145EFBF500B45C7B /* DetailViewController_iPad.xib */,
+				A59FDCBE1472CB8900AA6F23 /* BTBaseViewController.h */,
+				A59FDCBF1472CB8900AA6F23 /* BTBaseViewController.m */,
+				A539FFCD149F72E300B5DB9D /* BTListViewController.h */,
+				A539FFCE149F72E400B5DB9D /* BTListViewController.m */,
+				A539FFD3149F739100B5DB9D /* BTMainTableViewController.h */,
+				A539FFD4149F739100B5DB9D /* BTMainTableViewController.m */,
+				A539FFD5149F739200B5DB9D /* BTMainTableViewController.xib */,
+				A54BEC7E14A0ED2C006BACD5 /* BTBoardListViewController.h */,
+				A54BEC7F14A0ED2C006BACD5 /* BTBoardListViewController.m */,
+				A54BEC8014A0ED2C006BACD5 /* BTBoardListViewController.xib */,
+				A5267A8614A1BC6300453DB3 /* BTContentsViewController.h */,
+				A5267A8714A1BC6300453DB3 /* BTContentsViewController.m */,
+				A5267A8814A1BC6300453DB3 /* BTContentsViewController.xib */,
 				A5FBFCED145EFBF500B45C7B /* Supporting Files */,
 			);
 			path = Bestiz;
@@ -390,13 +371,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5FBFCF1145EFBF500B45C7B /* InfoPlist.strings in Resources */,
-				A5FBFD00145EFBF500B45C7B /* MasterViewController_iPhone.xib in Resources */,
-				A5FBFD03145EFBF500B45C7B /* MasterViewController_iPad.xib in Resources */,
-				A5FBFD06145EFBF500B45C7B /* DetailViewController_iPhone.xib in Resources */,
-				A5FBFD09145EFBF500B45C7B /* DetailViewController_iPad.xib in Resources */,
-				A5DC87A714608A8000BA91A5 /* MainTableViewController.xib in Resources */,
-				A566CA841476192400ACCD01 /* BoardListViewContoller.xib in Resources */,
-				A534D00E1477344200881489 /* MainContentsViewController.xib in Resources */,
+				A539FFD7149F739300B5DB9D /* BTMainTableViewController.xib in Resources */,
+				A54BEC8214A0ED2D006BACD5 /* BTBoardListViewController.xib in Resources */,
+				A5267A8A14A1BC6300453DB3 /* BTContentsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,29 +386,15 @@
 			files = (
 				A5FBFCF3145EFBF500B45C7B /* main.m in Sources */,
 				A5FBFCF7145EFBF500B45C7B /* AppDelegate.m in Sources */,
-				A5FBFCFA145EFBF500B45C7B /* MasterViewController.m in Sources */,
-				A5FBFCFD145EFBF500B45C7B /* DetailViewController.m in Sources */,
 				A5FBFD14145EFC1C00B45C7B /* HTMLNode.m in Sources */,
 				A5FBFD15145EFC1C00B45C7B /* HTMLParser.m in Sources */,
-				A5DC87A614608A8000BA91A5 /* MainTableViewController.m in Sources */,
-				A5DC87AA1460956700BA91A5 /* BoardIndex.m in Sources */,
+				A5DC87AA1460956700BA91A5 /* BTBoardIndex.m in Sources */,
 				A57A251F146F15010091DE45 /* BestizParser.m in Sources */,
-				A59FDCC11472CB8900AA6F23 /* BaseViewController.m in Sources */,
-				A59FDCC61472D57900AA6F23 /* ListViewController.m in Sources */,
-				A566CA831476192400ACCD01 /* BoardListViewContoller.m in Sources */,
-				A534D00D1477344200881489 /* MainContentsViewController.m in Sources */,
+				A59FDCC11472CB8900AA6F23 /* BTBaseViewController.m in Sources */,
 				A593A01E147F2C4E007D68FD /* BTBoard.m in Sources */,
 				A5115EA4148A01C3001B4493 /* BTBaseModel.m in Sources */,
 				A5115EA8148A01F1001B4493 /* BTRequestableModel.m in Sources */,
-				A5115EAB148A02DE001B4493 /* BTComment.m in Sources */,
-				A5115EAE148A060F001B4493 /* BTGuestHeaven.m in Sources */,
-				A5115EB1148A0644001B4493 /* BTGuestChatter.m in Sources */,
-				A5115EB4148A0656001B4493 /* BTGuestSpring.m in Sources */,
-				A5115EB7148A0668001B4493 /* BTGuestSummer.m in Sources */,
-				A5115EBA148A06B8001B4493 /* BTGuestHeavenComment.m in Sources */,
-				A5115EBD148A06C7001B4493 /* BTGuestChatterComment.m in Sources */,
-				A5115EC0148A06DA001B4493 /* BTGuestSpringComment.m in Sources */,
-				A5115EC3148A06EA001B4493 /* BTGuestSummerComment.m in Sources */,
+				A5115EAB148A02DE001B4493 /* BTContents.m in Sources */,
 				A5115EC8148CA7C3001B4493 /* BTRequester.m in Sources */,
 				A5115EE2148CA80D001B4493 /* ASIAuthenticationDialog.m in Sources */,
 				A5115EE3148CA80D001B4493 /* ASIDataCompressor.m in Sources */,
@@ -443,6 +406,15 @@
 				A5115EE9148CA80D001B4493 /* ASIInputStream.m in Sources */,
 				A5115EEA148CA80D001B4493 /* ASINetworkQueue.m in Sources */,
 				A5115EEB148CA80D001B4493 /* Reachability.m in Sources */,
+				A52955BD14948AFF0008CDB0 /* BTBaseParser.m in Sources */,
+				A52955C11494FC570008CDB0 /* BTBoardParser.m in Sources */,
+				A52955CD14951DBC0008CDB0 /* BTContentsParser.m in Sources */,
+				A539FFC5149F251300B5DB9D /* BTComment.m in Sources */,
+				A539FFCC149F3D3B00B5DB9D /* BTCommentParser.m in Sources */,
+				A539FFCF149F72E500B5DB9D /* BTListViewController.m in Sources */,
+				A539FFD6149F739300B5DB9D /* BTMainTableViewController.m in Sources */,
+				A54BEC8114A0ED2D006BACD5 /* BTBoardListViewController.m in Sources */,
+				A5267A8914A1BC6300453DB3 /* BTContentsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,38 +427,6 @@
 				A5FBFCF0145EFBF500B45C7B /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		A5FBFCFE145EFBF500B45C7B /* MasterViewController_iPhone.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A5FBFCFF145EFBF500B45C7B /* en */,
-			);
-			name = MasterViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		A5FBFD01145EFBF500B45C7B /* MasterViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A5FBFD02145EFBF500B45C7B /* en */,
-			);
-			name = MasterViewController_iPad.xib;
-			sourceTree = "<group>";
-		};
-		A5FBFD04145EFBF500B45C7B /* DetailViewController_iPhone.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A5FBFD05145EFBF500B45C7B /* en */,
-			);
-			name = DetailViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		A5FBFD07145EFBF500B45C7B /* DetailViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A5FBFD08145EFBF500B45C7B /* en */,
-			);
-			name = DetailViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
