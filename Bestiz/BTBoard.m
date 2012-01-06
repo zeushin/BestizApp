@@ -23,6 +23,7 @@
 - (void)dealloc
 {
     [title release];
+    [number release];
     [subject release];
     [name release];
     [date release];

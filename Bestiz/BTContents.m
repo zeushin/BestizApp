@@ -57,4 +57,31 @@
     }
 }
 
++ (NSString *)getFullURLfromHarfURL:(NSString *)harfURL board:(BoardCategory)board
+{
+    BTBoardIndex *boardIndex = [[BTBoardIndex alloc] init];
+    NSString *urlString = nil;
+    
+    switch (board) {
+        case BoardCategoryGuestHeaven:
+            urlString = [boardIndex urlOfBoard:board boardType:BoardTypeContents];
+            break;
+        case BoardCategoryGuestChatter:
+            urlString = [boardIndex urlOfBoard:board boardType:BoardTypeContents];
+            break;
+        case BoardCategoryGuestSpring:
+            urlString = [boardIndex urlOfBoard:board boardType:BoardTypeContents];
+            break;
+        case BoardCategoryGuestSummer:
+            urlString = [boardIndex urlOfBoard:board boardType:BoardTypeContents];
+            break;
+        default:
+            break;
+    }
+    [boardIndex release];
+    urlString = [NSString stringWithFormat:@"%@/%@", urlString, harfURL];
+    
+    return urlString;
+}
+
 @end

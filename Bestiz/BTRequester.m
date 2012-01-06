@@ -80,24 +80,22 @@ static NSString *REQUESTER_MODEL_NAME = @"RequesterModelName";
     else
         getURL = _url;
     
+    NSLog(@"requestURL: %@", getURL);
     NSURL *url = [NSURL URLWithString:getURL];
     
-//    NSString *urlstring = [NSString stringWithContentsOfURL:url encoding:-2147481280 error:nil];
-//    NSLog(@"%@", urlstring);
-    
-    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:url];
+    ASIHTTPRequest *request = [[[ASIHTTPRequest alloc] initWithURL:url] autorelease];
     
     [request setDelegate:self];
     [request setRequestMethod:[self __requestMethod]];
     
     NSString *requestClassName = NSStringFromClass(requesterClass);
-    NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
     [userInfo setValue:requestClassName forKey:REQUESTER_MODEL_NAME];
     
     [request setUserInfo:userInfo];
-    [userInfo release];
     [request setTag:_boardType];
     [request setQueue:_queue];
+//    [request setDefaultResponseEncoding:-2147481280];
     
     [request startAsynchronous];
 }
@@ -134,13 +132,14 @@ static NSString *REQUESTER_MODEL_NAME = @"RequesterModelName";
         default:
             break;
     }
+    [bestizParser release];
     
     NSString *requesterModelName = [request.userInfo objectForKey:REQUESTER_MODEL_NAME];
     BTBaseParser *parser = [self __parserWithRequesterClassName:requesterModelName];
     NSMutableArray *models = [parser parseToModels:parsingResult];
     
-    if (delegate && [(NSObject *)delegate respondsToSelector:@selector(requestFinishedWithResults:)]) {
-        [delegate requestFinishedWithResults:models];
+    if (delegate && [(NSObject *)delegate respondsToSelector:@selector(requestFinishedWithResults:tag:)]) {
+        [delegate requestFinishedWithResults:models tag:request.tag];
     }
 }
 
@@ -150,6 +149,8 @@ static NSString *REQUESTER_MODEL_NAME = @"RequesterModelName";
     NSLog(@"%@", log);
     [log release];
     
+    NSError *error = request.error;
+    NSLog(@"%@", error.domain);
     NSLog(@"request Failed");
 }
 

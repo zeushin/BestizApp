@@ -13,7 +13,7 @@
 - (BTBaseModel *)parseToModel:(NSDictionary *)dic
 {
     BTBoard *board = [[[BTBoard alloc] init] autorelease];
-    board.number = [self parseToInt:[dic objectForKey:BOARD_NO]];
+    board.number = [self parseToString:[dic objectForKey:BOARD_NO]];
     board.subject = [self parseToString:[dic objectForKey:BOARD_SUBJECT]];
     board.name = [self parseToString:[dic objectForKey:BOARD_NAME]];
     board.url = [NSURL URLWithString:[self parseToString:[dic objectForKey:BOARD_URL]]];

@@ -76,6 +76,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
+    NSLog(@"data count: %d", [data count]);
+
     return [data count];
 }
 

@@ -11,7 +11,7 @@
 @interface BTBoard : BTRequestableModel
 {
     NSString *title;
-    NSUInteger number;
+    NSString *number;
     NSString *subject;
     NSString *name;
     NSDate *date;
@@ -23,7 +23,7 @@
 }
 
 @property (nonatomic, retain) NSString *title;
-@property (nonatomic) NSUInteger number;
+@property (nonatomic, retain) NSString *number;
 @property (nonatomic, retain) NSString *subject;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSDate *date;

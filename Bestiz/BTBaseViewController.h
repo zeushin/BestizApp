@@ -11,6 +11,8 @@
 #import "BestizParser.h"
 #import "BTRequesterDelegate.h"
 
+const static CGFloat kFontSize = 12.0f;
+
 @interface BTBaseViewController : UIViewController
 
 @end

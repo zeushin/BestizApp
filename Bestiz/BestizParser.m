@@ -1,4 +1,4 @@
-//
+              //
 //  BestizParser.m
 //  Bestiz
 //
@@ -73,16 +73,20 @@
 }
 
 
-//////////////////////////////
-// 게시글 내용물을 배열로 투척 //
-//////////////////////////////
+////////////////////////////////////////
+// 게시글 내용물을 배열로 투척 (html type) //
+////////////////////////////////////////
 
 - (NSMutableArray *)parsingWithContentsOfData:(NSData *)data
 {
     NSMutableArray *allContents = [NSMutableArray array];
     HTMLNode *body = [self parsingOfData:data];
     
-    NSString *contents = [[[body findChildWithAttribute:@"style" matchingName:@"line-height:160%" allowPartial:YES] allContents] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *contents = [[[body findChildWithAttribute:@"style" matchingName:@"line-height:160%" allowPartial:YES] rawContents] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    NSString *css = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"css" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
+    
+    contents = [NSString stringWithFormat:@"%@%@", css, contents];
     
     NSMutableDictionary *contentsDic = [NSDictionary dictionaryWithObject:contents forKey:CONTENTS];
 

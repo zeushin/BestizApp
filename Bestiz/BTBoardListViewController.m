@@ -8,11 +8,13 @@
 
 #import "BTBoardListViewController.h"
 #import "BTBoard.h"
+#import "BTContents.h"
 #import "BTContentsViewController.h"
+#import "BTContentsWebViewController.h"
 
 @interface BTBoardListViewController() {
 @private
-    
+    BTContentsViewController *_contentsView;
 }
 
 @property (nonatomic) NSUInteger page;
@@ -87,12 +89,17 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        [cell.textLabel setFont:[UIFont systemFontOfSize:kFontSize-1]];
+        [cell.detailTextLabel setFont:[UIFont systemFontOfSize:kFontSize]];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
     
     // Configure the cell...
     BTBoard *board = [data objectAtIndex:indexPath.row];
-    cell.textLabel.text = board.subject;
+    NSString *string = [NSString stringWithFormat:@"%@  %@", board.number, board.name];
+    [cell.textLabel setText:string];
+    [cell.detailTextLabel setText:board.subject];
     
     return cell;
 }
@@ -140,22 +147,34 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BTContentsViewController *contentsView = [[BTContentsViewController alloc] init];
-    contentsView.boardIndex = _boardIndex;
+    _contentsView = [[BTContentsViewController alloc] init];
+    _contentsView.boardIndex = _boardIndex;
     BTBoard *board = [data objectAtIndex:indexPath.row];
-    contentsView.harfURL = [board.url absoluteString];
-    [self.navigationController pushViewController:contentsView animated:YES];
-    [contentsView release];
+    _contentsView.harfURL = [board.url absoluteString];
+    [BTContents getContents:_boardIndex.boardCategory url:[board.url absoluteString] delegate:self];
+    
+//    BTContentsWebViewController *webView = [[BTContentsWebViewController alloc] init];
+//    webView.boardIndex = _boardIndex;
+//    BTBoard *board = [data objectAtIndex:indexPath.row];
+//    webView.harfURL = [board.url absoluteString];
+//    [self.navigationController pushViewController:webView animated:YES];
+//    [webView release];
 }
 
 #pragma mark - BTRequesterDelegate method
 
-- (void)requestFinishedWithResults:(NSMutableArray *)results
+- (void)requestFinishedWithResults:(NSMutableArray *)results tag:(NSInteger)tag
 {
-    self.data = results;
-    [table reloadData];
-    [self.navigationItem.rightBarButtonItem setEnabled:YES];
-    [self setScrollsToTop];
+    if (tag == BoardTypeList) {
+        self.data = results;
+        [table reloadData];
+        [self.navigationItem.rightBarButtonItem setEnabled:YES];
+        [self setScrollsToTop];
+    } else if (tag == BoardTypeContents) {
+        _contentsView.contentsData = results;
+        [self.navigationController pushViewController:_contentsView animated:YES];
+        [_contentsView release];
+    }
 }
 
 @end
