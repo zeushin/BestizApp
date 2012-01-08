@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
 #import "BTBoardIndex.h"
 #import "BestizParser.h"
 #import "BTRequesterDelegate.h"

@@ -14,7 +14,10 @@ static NSString *BOARD_READ = @"read";
 static NSString *BOARD_VOTE = @"vote";
 static NSString *BOARD_URL = @"href";
 
+static NSString *CONTENTS_NAME = @"name";
+static NSString *CONTENTS_SUBJECT = @"subject";
 static NSString *CONTENTS = @"contents";
+
 static NSString *COMMENT_NAME = @"name";
 static NSString *COMMENT_COMMENT = @"comment";
 static NSString *COMMENT_IP = @"ip";

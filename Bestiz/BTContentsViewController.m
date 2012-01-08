@@ -9,26 +9,31 @@
 #import "BTContentsViewController.h"
 #import "BTContents.h"
 #import "BTComment.h"
+#import "BTCommentCell.h"
 
 @interface BTContentsViewController() {
 @private
-    
+    BOOL finishRequestWebView;
+    BOOL finishRequestComment;
 }
 
 @property (nonatomic) CGFloat cellHeight;
 
+- (void)requestContents;
 - (void)resizingView;
+- (BOOL)requestFinish;
 
 @end
 
 @implementation BTContentsViewController
 
-@synthesize scrollView = _scrollView;
-@synthesize webView = _webView;
+@synthesize scrollView = _scrollView, webView = _webView;
+@synthesize titleLabel = _titleLabel, nameLabel = _nameLabel;
 @synthesize boardIndex = _boardIndex;
 @synthesize harfURL = _harfURL;
 @synthesize contentsData = _contentsData;
 @synthesize cellHeight = _cellHeight;
+@synthesize btBoard = _btBoard;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,25 +57,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    // 네비 타이틀
     [self setTitle:_boardIndex.nameOfBoard];
     
-//    [table setTableHeaderView:_webView];
+    // 제목과 글쓴이
+    _titleLabel.text = _btBoard.subject;
+    _nameLabel.text = _btBoard.name;
     
-    BTContents *contents = (BTContents *)[_contentsData lastObject];
+    // 리프레시 버튼
+    UIBarButtonItem *refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshTable:)];
+    self.navigationItem.rightBarButtonItem = refresh;
+    [refresh release];
     
-    NSString *baseURL = [NSString stringWithFormat:@"%@/%@", [_boardIndex urlOfBoard:_boardIndex.boardCategory boardType:BoardTypeContents], _harfURL];
-
-    [_webView loadHTMLString:contents.contents baseURL:[NSURL URLWithString:baseURL]];
-    
+    // 웹뷰 스크롤 막기
     [_webView.scrollView setScrollEnabled:NO];
     
-//    NSString *contentsString = [contents.contents stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-//    [_textView setText:contentsString];
-//    [_textView setFont:[UIFont systemFontOfSize:kFontSize-1]];
+    // 스크롤뷰 배경색 지정
+    [_scrollView setBackgroundColor:[UIColor colorWithRed:242.0/255.0 green:246.0/255.0 blue:251.0/255.0 alpha:0.9]];
     
-    
-    [BTComment getComment:_boardIndex.boardCategory url:_harfURL delegate:self];
+    // 컨텐츠 리퀘스트
+    [self requestContents];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -84,6 +91,8 @@
     // Release any retained subviews of the main view.
     self.webView = nil;
     self.scrollView = nil;
+    self.titleLabel = nil;
+    self.nameLabel = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -95,14 +104,28 @@
 - (void)dealloc
 {
     [_webView release];
+    [_scrollView release];
+    [_titleLabel release];
+    [_nameLabel release];
     [_boardIndex release];
     [_harfURL release];
     [_contentsData release];
-    [_scrollView release];
+    [_btBoard release];
     
     [super dealloc];
 }
 
+
+// Private methods //
+
+- (void)requestContents
+{
+    BTContents *contents = (BTContents *)[_contentsData lastObject];
+    NSString *baseURL = [NSString stringWithFormat:@"%@/%@", [_boardIndex urlOfBoard:_boardIndex.boardCategory boardType:BoardTypeContents], _harfURL];
+    [_webView loadHTMLString:contents.contents baseURL:[NSURL URLWithString:baseURL]];
+    
+    [BTComment getComment:_boardIndex.boardCategory url:_harfURL delegate:self];
+}
 
 - (void)resizingView
 {
@@ -113,26 +136,39 @@
     CGSize fittingSize = [_webView sizeThatFits:CGSizeZero];
     webviewFrame.size = fittingSize;
     [_webView setFrame:webviewFrame];
-    NSLog(@"webview: %@", _webView);
-    NSLog(@"webviewContent : %f %f", _webView.scrollView.contentSize.width, _webView.scrollView.contentSize.height);
+//    NSLog(@"webview: %@", _webView);
+//    NSLog(@"webviewContent : %f %f", _webView.scrollView.contentSize.width, _webView.scrollView.contentSize.height);
     
     // 테이블 크기를 테이블 컨텐츠 사이즈만큼 늘리고 웹뷰 밑에 붙임
     CGRect tableFrame = table.frame;
     tableFrame.size.height = table.contentSize.height;
-    tableFrame.origin.y = _webView.frame.size.height;
+    tableFrame.origin.y = _webView.frame.size.height + _webView.frame.origin.y;
     [table setFrame:tableFrame];
-    NSLog(@"table: %@", table);
+//    NSLog(@"table: %@", table);
     
     // 웹뷰와 테이블뷰 사이즈 만큼 스크롤뷰의 컨텐츠 사이즈를 늘림
     CGSize size = _scrollView.contentSize;
-    size.height = _webView.frame.size.height + table.frame.size.height;
+    size.height = _webView.frame.size.height + table.frame.size.height + 55; // 상단 헤더높이 55
     [_scrollView setContentSize:size];
-    NSLog(@"scrollView: %f %f", _scrollView.contentSize.width, _scrollView.contentSize.height);
-    
+//    NSLog(@"scrollView: %f %f", _scrollView.contentSize.width, _scrollView.contentSize.height);
+}
 
+- (BOOL)requestFinish
+{
+    if (finishRequestComment && finishRequestWebView) {
+        return YES;
+    }
     
-    [_scrollView reloadInputViews];
-    [table reloadData];
+    return NO;
+}
+
+
+// Touch up insdie method //
+
+- (void)refreshTable:(id)sender
+{
+    [self.navigationItem.rightBarButtonItem setEnabled:[self requestFinish]];
+    [self requestContents];
 }
 
 
@@ -140,19 +176,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"BTCommentCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    BTCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        [cell.textLabel setFont:[UIFont systemFontOfSize:kFontSize]];
-        _cellHeight = cell.frame.size.height;
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"BTCommentCell" owner:self options:nil] lastObject];
     }
     
     // Configure the cell...
     BTComment *comment = [data objectAtIndex:indexPath.row];
-    cell.textLabel.text = comment.comment;
-    
+    cell.nameLabel.text = comment.name;
+    cell.ipLabel.text = comment.ip;
+    cell.commentLabel.text = comment.comment;
+
     return cell;
 }
 
@@ -165,30 +201,84 @@
     }
 }
 
+
+#pragma mark - Table view delegate method
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat cellHeight = 55.0f;
+    
+    BTComment *comment = [data objectAtIndex:indexPath.row];
+    NSString *commentString = comment.comment;
+    CGSize commentSize = [commentString sizeWithFont:[UIFont boldSystemFontOfSize:13] constrainedToSize:CGSizeMake(290, 1000) lineBreakMode:UILineBreakModeCharacterWrap];
+    CGFloat offset = commentSize.height - 13;
+    if (offset > 13) {
+        cellHeight += offset;
+    }
+
+    return cellHeight;
+}
+
+
 #pragma mark - BTRequesterDelegate method
 
 - (void)requestFinishedWithResults:(NSMutableArray *)results tag:(NSInteger)tag
-{
-//    if (tag == BoardTypeContents) {
-//        self.contentsData = results;
-//        BTContents *contents = (BTContents *)[_contentsData lastObject];
-//        NSString *contentsString = [contents.contents stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-//        [_textView setText:contentsString];
-//        [self.navigationItem.rightBarButtonItem setEnabled:YES];
-//        [self setTableHeaderViewFrame];
-//    } else 
-        if (tag == BoardTypeComment) {
+{    
+    if (tag == BoardTypeComment) {
         self.data = results;
         [table reloadData];
     }
     
     [self resizingView];
+    finishRequestComment = YES;
+    [self.navigationItem.rightBarButtonItem setEnabled:[self requestFinish]];
 }
+
 
 #pragma mark - UIWebView delegate method
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [self resizingView];
+    finishRequestWebView = YES;
+    [self.navigationItem.rightBarButtonItem setEnabled:[self requestFinish]];
 }
+
+-(BOOL) webView:(UIWebView *)inWeb shouldStartLoadWithRequest:(NSURLRequest *)inRequest navigationType:(UIWebViewNavigationType)inType {
+    if ( inType == UIWebViewNavigationTypeLinkClicked ) {
+        [[UIApplication sharedApplication] openURL:[inRequest URL]];
+        return NO;
+    }
+    
+    return YES;
+}
+
+
+//- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+//{
+//	
+//    if (!self.bannerIsVisible)
+//    {
+//		NSLog(@"bannerViewDidLoadAd -----");
+//        [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
+//		// assumes the banner view is offset 50 pixels so that it is not visible.
+//        banner.frame = CGRectOffset(banner.frame, 0, 50);//50
+//        [UIView commitAnimations];
+//        self.bannerIsVisible = YES;
+//        
+//        
+//    }
+//}
+//
+//- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+//{//NSLog(@"didFailToReceiveAdWithError");
+//	if (self.bannerIsVisible)
+//    {
+//		NSLog(@"didFailToReceiveAdWithError");
+//        [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
+//		// assumes the banner view is at the top of the screen.
+//        banner.frame = CGRectOffset(banner.frame, 0, -50);//-50);
+//        [UIView commitAnimations];
+//        self.bannerIsVisible = NO;
+//    }
+//}
 
 @end

@@ -10,9 +10,13 @@
 
 @interface BTContents : BTRequestableModel
 {
+    NSString *name;
+    NSString *subject;
     NSString *contents;
 }
 
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *subject;
 @property (nonatomic, retain) NSString *contents;
 
 + (void)getContents:(BoardCategory)board url:(NSString *)harfURL delegate:(id <BTRequesterDelegate>)delegate;

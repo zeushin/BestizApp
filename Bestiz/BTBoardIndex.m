@@ -10,7 +10,7 @@
 
 @implementation BTBoardIndex
 
-@synthesize nameOfBoard, /*urlOfBoard, guestType,*/ boardCategory;
+@synthesize nameOfBoard, imgOfBoard, boardCategory;
 
 - (id)init
 {
@@ -22,21 +22,22 @@
     return self;
 }
 
-- (id)initWithNameOfBoard:(NSString *)name boardCategory:(BoardCategory)category
+- (id)initWithNameOfBoard:(NSString *)name Image:(UIImage *)img boardCategory:(BoardCategory)category
 {
     self = [self init];
     if (self) {
         self.nameOfBoard = name;
-//        self.urlOfBoard = url;
-//        self.guestType = type;
+        self.imgOfBoard = img;
         self.boardCategory = category;
-//        NSLog(@"%@%@%@", nameOfBoard, urlOfBoard, guestType);
     }
     return self;
 }
 
 - (void)dealloc
 {
+    [nameOfBoard release];
+    [imgOfBoard release];
+    
     [super dealloc];
 }
 

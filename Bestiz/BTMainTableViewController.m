@@ -48,12 +48,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [self setTitle:@"Bestiz.net"];
 }
 
 - (void)viewDidUnload
@@ -96,6 +92,7 @@
     [super dealloc];
 }
 
+
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -111,67 +108,29 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
     
     // Configure the cell...
-    BTBoardIndex *boradIndex = (BTBoardIndex *)[_boardIndexData objectAtIndex:indexPath.row];
-    cell.textLabel.text = boradIndex.nameOfBoard;
-    
+    BTBoardIndex *boardIndex = (BTBoardIndex *)[_boardIndexData objectAtIndex:indexPath.row];
+    cell.textLabel.text = boardIndex.nameOfBoard;
+    [cell.imageView setImage:boardIndex.imgOfBoard];
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return @"Bestiz";
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    
+{    
     BTBoardListViewController *detailViewController = [[BTBoardListViewController alloc] init];
-    // ...
-    // Pass the selected object to the new view controller.
     detailViewController.boardIndex = (BTBoardIndex *)[_boardIndexData objectAtIndex:indexPath.row];
     
     [self.navigationController pushViewController:detailViewController animated:YES];
-    
     [detailViewController release];
 }
 
@@ -183,10 +142,15 @@
     NSString *gSpring = @"게잡의 봄";
     NSString *gSummer = @"게잡의 여름";
     
-    BTBoardIndex *guestHeavenIndex = [[BTBoardIndex alloc] initWithNameOfBoard:gHeaven boardCategory:BoardCategoryGuestHeaven];
-    BTBoardIndex *guestChatterIndex = [[BTBoardIndex alloc] initWithNameOfBoard:gChatter boardCategory:BoardCategoryGuestChatter];
-    BTBoardIndex *guestSpringIndex = [[BTBoardIndex alloc] initWithNameOfBoard:gSpring boardCategory:BoardCategoryGuestSpring];
-    BTBoardIndex *guestSummerIndex = [[BTBoardIndex alloc] initWithNameOfBoard:gSummer boardCategory:BoardCategoryGuestSummer];
+    UIImage *gHeavenImage = [UIImage imageNamed:@"gc.gif"];
+    UIImage *gChatterImage = [UIImage imageNamed:@"gj.gif"];
+    UIImage *gSpringImage = [UIImage imageNamed:@"gb.gif"];
+    UIImage *gSummerImage = [UIImage imageNamed:@"gy.gif"];
+    
+    BTBoardIndex *guestHeavenIndex = [[BTBoardIndex alloc] initWithNameOfBoard:gHeaven Image:gHeavenImage boardCategory:BoardCategoryGuestHeaven];
+    BTBoardIndex *guestChatterIndex = [[BTBoardIndex alloc] initWithNameOfBoard:gChatter Image:gChatterImage boardCategory:BoardCategoryGuestChatter];
+    BTBoardIndex *guestSpringIndex = [[BTBoardIndex alloc] initWithNameOfBoard:gSpring Image:gSpringImage boardCategory:BoardCategoryGuestSpring];
+    BTBoardIndex *guestSummerIndex = [[BTBoardIndex alloc] initWithNameOfBoard:gSummer Image:gSummerImage boardCategory:BoardCategoryGuestSummer];
     
     self.boardIndexData = [NSArray arrayWithObjects:guestHeavenIndex, guestChatterIndex, guestSpringIndex, guestSummerIndex, nil];
     [guestHeavenIndex release];

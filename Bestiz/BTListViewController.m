@@ -8,8 +8,15 @@
 
 #import "BTListViewController.h"
 
+@interface BTListViewController() {
+@private
+    BOOL reachedAtBottom;
+}
+@end
+
 @implementation BTListViewController
 
+@synthesize delegate;
 @synthesize data;
 @synthesize table;
 
@@ -17,7 +24,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        //
+        
     }
     return self;
 }
@@ -84,6 +91,29 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 { 
     return nil;
+}
+
+
+#pragma mark - Scroll view delegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.frame.size.height)
+    {
+        if (!reachedAtBottom)
+        {
+            reachedAtBottom = YES;
+            
+            if ([delegate respondsToSelector:@selector(didReachedBottomOfTableView)])
+            {
+                [delegate didReachedBottomOfTableView];
+            }
+        }
+    }
+    else
+    {
+        reachedAtBottom = NO;
+    }
 }
 
 @end

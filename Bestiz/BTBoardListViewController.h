@@ -8,7 +8,7 @@
 
 #import "BTListViewController.h"
 
-@interface BTBoardListViewController : BTListViewController <BTRequesterDelegate>
+@interface BTBoardListViewController : BTListViewController <BTRequesterDelegate, BTListViewControllerDelegate>
 {
     BTBoardIndex *boardIndex;
 }

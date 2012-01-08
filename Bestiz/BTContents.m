@@ -10,10 +10,12 @@
 
 @implementation BTContents
 
-@synthesize contents;
+@synthesize name, subject, contents;
 
 - (void)dealloc
 {
+    [name release];
+    [subject release];
     [contents release];
     
     [super dealloc];

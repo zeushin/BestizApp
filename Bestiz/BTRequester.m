@@ -115,7 +115,7 @@ static NSString *REQUESTER_MODEL_NAME = @"RequesterModelName";
 {
     NSArray *parsingResult;
     BestizParser *bestizParser = [[BestizParser alloc] init];
-    
+    NSLog(@"%@", request);
     NSString *responseString = [request responseString];
     NSData *data = [responseString dataUsingEncoding:NSUTF8StringEncoding];
     switch (request.tag) {

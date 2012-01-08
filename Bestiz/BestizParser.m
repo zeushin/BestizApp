@@ -79,17 +79,39 @@
 
 - (NSMutableArray *)parsingWithContentsOfData:(NSData *)data
 {
-    NSMutableArray *allContents = [NSMutableArray array];
     HTMLNode *body = [self parsingOfData:data];
     
+//    // 제목 부분 파싱
+//    NSArray *tables = [body findChildTags:@"table"];
+//    HTMLNode *table = [tables objectAtIndex:11];
+//    NSArray *trs = [table findChildTags:@"tr"];
+//    HTMLNode *tr = [trs objectAtIndex:6];
+//    
+//    NSLog(@"%@", [tr rawContents]);
+//    
+//    HTMLNode *subjectNode = [tr findChildTag:@"b"];
+//    NSString *subject = [subjectNode allContents];
+//    
+//    // 글쓴이 파싱
+//    tr = [trs objectAtIndex:4];
+//    HTMLNode *nameNode = [tr findChildTag:@"span"];
+//    NSString *name = [nameNode allContents];
+
+    // 분문 부분 html로 파싱
     NSString *contents = [[[body findChildWithAttribute:@"style" matchingName:@"line-height:160%" allowPartial:YES] rawContents] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     NSString *css = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"css" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
     
-    contents = [NSString stringWithFormat:@"%@%@", css, contents];
+    contents = [NSString stringWithFormat:@"%@<div id='contents'>%@</div>", css, contents];
     
-    NSMutableDictionary *contentsDic = [NSDictionary dictionaryWithObject:contents forKey:CONTENTS];
-
+    // 딕셔너리 생성
+    NSMutableDictionary *contentsDic = [NSMutableDictionary dictionary];
+//    [contentsDic setObject:name forKey:CONTENTS_NAME];
+//    [contentsDic setObject:subject forKey:CONTENTS_SUBJECT];
+    [contentsDic setObject:contents forKey:CONTENTS];
+    
+    // 어레이에 세팅
+    NSMutableArray *allContents = [NSMutableArray array];
     [allContents addObject:contentsDic];
     
     return allContents;

@@ -13,6 +13,8 @@
 - (BTBaseModel *)parseToModel:(NSDictionary *)dic
 {
     BTContents *contents = [[[BTContents alloc] init] autorelease];
+    contents.name = [self parseToString:[dic objectForKey:CONTENTS_NAME]];
+    contents.subject = [self parseToString:[dic objectForKey:CONTENTS_SUBJECT]];
     contents.contents = [self parseToString:[dic objectForKey:CONTENTS]];
     
     return contents;

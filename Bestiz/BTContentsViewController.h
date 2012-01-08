@@ -7,18 +7,17 @@
 //
 
 #import "BTListViewController.h"
+#import "BTBoard.h"
 
 @interface BTContentsViewController : BTListViewController <BTRequesterDelegate, UIWebViewDelegate>
-{
-//    NSMutableArray *_contentsData;
-//    UIWebView *_webView;
-//    BTBoardIndex *_boardIndex;
-//    NSString *_harfURL;
-}
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, retain) NSMutableArray *contentsData;
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
+@property (nonatomic, retain) IBOutlet UILabel *titleLabel;
+@property (nonatomic, retain) IBOutlet UILabel *nameLabel;
+
+@property (nonatomic, retain) BTBoard *btBoard;
+@property (nonatomic, retain) NSMutableArray *contentsData;
 @property (nonatomic, retain) BTBoardIndex *boardIndex;
 @property (nonatomic, retain) NSString *harfURL;
 

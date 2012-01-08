@@ -32,17 +32,14 @@ typedef enum
 @interface BTBoardIndex : NSObject
 {
     NSString *nameOfBoard;
-//    NSString *urlOfBoard;
-//    GuestType guestType;
+    UIImage *imgOfBoard;
 }
 
 @property (nonatomic, retain) NSString *nameOfBoard;
-//@property (nonatomic, retain) NSString *urlOfBoard;
-//@property (nonatomic) GuestType guestType;
+@property (nonatomic, retain) UIImage *imgOfBoard;
 @property (nonatomic) BoardCategory boardCategory;
 
-//- (id)initWithNameOfBoard:(NSString *)name urlOfBoard:(NSString *)url typeOfGuest:(GuestType)type boardCategory:(BoardCategory)category;
-- (id)initWithNameOfBoard:(NSString *)name boardCategory:(BoardCategory)category;
+- (id)initWithNameOfBoard:(NSString *)name Image:(UIImage *)img boardCategory:(BoardCategory)category;
 - (NSString *)urlOfBoard:(BoardCategory)category boardType:(BoardType)boardType;
 
 //=============================================================================//
@@ -57,7 +54,7 @@ typedef enum
 // 게스트 천국 ID
 #define GUEST_HEAVEN_BOARD_ID @"id=gworld0707"
 // 게천 잡담 ID
-#define GUEST_HEAVEN_CHATTER_ID @"id=jd1106"
+#define GUEST_HEAVEN_CHATTER_ID @"id=jd1112"
 // 게잡의 봄 ID
 #define GUEST_CHATTER_SPRING_ID @"id=jb0901"
 // 게잡의 여름 ID
