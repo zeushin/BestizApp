@@ -10,6 +10,8 @@
 
 @implementation BTBaseViewController
 
+@synthesize adView = _adView, bannerIsVisible;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -33,6 +35,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [_adView setDelegate:self];
+
+    self.bannerIsVisible = NO;
 }
 
 - (void)viewDidUnload
@@ -50,7 +55,10 @@
 
 - (void)dealloc
 {    
+    [_adView release];
+    
     [super dealloc];
 }
+
 
 @end

@@ -9,10 +9,12 @@
 #import "BTRequester.h"
 #import "BestizParser.h"
 #import "BTBaseParser.h"
+#import "AppDelegate.h"
 
 static BTRequester *requester = nil;
-
 static NSString *REQUESTER_MODEL_NAME = @"RequesterModelName";
+static UIActivityIndicatorView *actView = nil;
+static UIView *alaphaView = nil;
 
 @interface BTRequester()
 {
@@ -21,6 +23,9 @@ static NSString *REQUESTER_MODEL_NAME = @"RequesterModelName";
 }
 
 - (NSString *)__requestMethod;
+- (void)showRequestActivity;
+- (void)hideRequestActivity;
+
 @end
 
 @implementation BTRequester
@@ -74,6 +79,7 @@ static NSString *REQUESTER_MODEL_NAME = @"RequesterModelName";
 
 - (void)request
 {
+    [self showRequestActivity];
     NSString *getURL = nil;
     if (_page > 0)
         getURL = [NSString stringWithFormat:@"%@&page=%d", _url, _page];
@@ -110,6 +116,64 @@ static NSString *REQUESTER_MODEL_NAME = @"RequesterModelName";
     return parser;
 }
 
+
+- (void)showRequestActivity
+{
+    @synchronized(actView)
+    {
+        if (actView == nil)
+        {
+            actView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+            actView.tag = 0;
+        }
+        
+        AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        UIViewController *vc = [app.navigationController.viewControllers lastObject];
+        CGPoint p;
+        p.x = vc.view.frame.size.width / 2.0;
+        p.y = vc.view.frame.size.height / 2.0;
+        
+//        if (app.keyboardState == IFKeyboardStateUp)
+//        {
+//            p.y -= app.keyboardHeight / 2.0;
+//        }
+        
+        [actView setCenter:p];
+        
+        if (actView.tag == 0)
+        {
+            alaphaView = [[UIView alloc] initWithFrame:vc.view.frame];
+            [alaphaView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.6]];
+            [alaphaView addSubview:actView];
+            [vc.view addSubview:alaphaView];
+        }
+        
+        actView.tag += 1;
+        [actView startAnimating];
+    }
+}
+
+- (void)hideRequestActivity
+{
+    @synchronized(actView)
+    {
+        actView.tag -= 1;
+        if (actView.tag < 0)
+        {
+            actView.tag = 0;
+        }
+        
+        if (actView.tag == 0)
+        {
+            [actView stopAnimating];
+            [actView removeFromSuperview];
+            [alaphaView removeFromSuperview];
+            [alaphaView release];
+        }
+    }
+}
+
+
 #pragma mark - ASIHttpRequestDelegate Method
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
@@ -141,17 +205,21 @@ static NSString *REQUESTER_MODEL_NAME = @"RequesterModelName";
     if (delegate && [(NSObject *)delegate respondsToSelector:@selector(requestFinishedWithResults:tag:)]) {
         [delegate requestFinishedWithResults:models tag:request.tag];
     }
+    
+    [self hideRequestActivity];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
+    NSLog(@"request Failed");
     NSString *log = [[NSString alloc] initWithData:request.responseData encoding:NSUTF8StringEncoding];
-    NSLog(@"%@", log);
+    NSLog(@"failed log: %@", log);
     [log release];
     
     NSError *error = request.error;
-    NSLog(@"%@", error.domain);
-    NSLog(@"request Failed");
+    NSLog(@"faild domain: %@", error.domain);
+    
+    [self hideRequestActivity];
 }
 
 

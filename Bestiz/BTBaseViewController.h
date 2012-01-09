@@ -14,6 +14,13 @@
 
 const static CGFloat kFontSize = 12.0f;
 
-@interface BTBaseViewController : UIViewController
+@interface BTBaseViewController : UIViewController <ADBannerViewDelegate>
+{
+    BOOL bannerIsVisible;
+    ADBannerView *adView;
+}
+
+@property (nonatomic, retain) IBOutlet ADBannerView *adView;
+@property (nonatomic, assign) BOOL bannerIsVisible;
 
 @end

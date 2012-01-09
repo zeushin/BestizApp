@@ -23,6 +23,10 @@
 - (void)resizingView;
 - (BOOL)requestFinish;
 
+- (void)showRequestActivity;
+- (void)hideRequestActivity;
+
+
 @end
 
 @implementation BTContentsViewController
@@ -34,6 +38,8 @@
 @synthesize contentsData = _contentsData;
 @synthesize cellHeight = _cellHeight;
 @synthesize btBoard = _btBoard;
+
+static UIActivityIndicatorView *actView = nil;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -156,10 +162,54 @@
 - (BOOL)requestFinish
 {
     if (finishRequestComment && finishRequestWebView) {
+        [self hideRequestActivity];
         return YES;
     }
+    [self showRequestActivity];
     
     return NO;
+}
+
+- (void)showRequestActivity
+{
+    @synchronized(actView)
+    {
+        if (actView == nil) {
+            actView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            actView.tag = 0;
+        }
+        CGPoint point;
+        point.x = _webView.frame.size.width / 2.0;
+        point.y = 20;
+        
+        [actView setCenter:point];
+        
+        if (actView.tag == 0)
+        {
+            [_webView addSubview:actView];
+        }
+        
+        actView.tag += 1;
+        [actView startAnimating];
+    }
+}
+
+- (void)hideRequestActivity
+{
+    @synchronized(actView)
+    {
+        actView.tag -= 1;
+        if (actView.tag < 0)
+        {
+            actView.tag = 0;
+        }
+        
+        if (actView.tag == 0)
+        {
+            [actView stopAnimating];
+            [actView removeFromSuperview];
+        }
+    }
 }
 
 
@@ -252,33 +302,18 @@
 }
 
 
-//- (void)bannerViewDidLoadAd:(ADBannerView *)banner
-//{
-//	
-//    if (!self.bannerIsVisible)
-//    {
-//		NSLog(@"bannerViewDidLoadAd -----");
-//        [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
-//		// assumes the banner view is offset 50 pixels so that it is not visible.
-//        banner.frame = CGRectOffset(banner.frame, 0, 50);//50
-//        [UIView commitAnimations];
-//        self.bannerIsVisible = YES;
-//        
-//        
-//    }
-//}
-//
-//- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
-//{//NSLog(@"didFailToReceiveAdWithError");
-//	if (self.bannerIsVisible)
-//    {
-//		NSLog(@"didFailToReceiveAdWithError");
-//        [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
-//		// assumes the banner view is at the top of the screen.
-//        banner.frame = CGRectOffset(banner.frame, 0, -50);//-50);
-//        [UIView commitAnimations];
-//        self.bannerIsVisible = NO;
-//    }
-//}
+#pragma mark - ADBannerView delegate methods
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+
+}
+
+
 
 @end

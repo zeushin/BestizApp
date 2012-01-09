@@ -18,8 +18,10 @@
 }
 
 @property (nonatomic) NSUInteger page;
+@property (nonatomic, retain) UIView *coverView;
 
 - (void)requestBoard;
+- (void)addDummyData;
 
 @end
 
@@ -27,6 +29,7 @@
 
 @synthesize boardIndex = _boardIndex;
 @synthesize page = _page;
+@synthesize coverView = _coverView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -77,6 +80,7 @@
 - (void)dealloc
 {
     [_boardIndex release];
+    [_coverView release];
     
     [super dealloc];
 }
@@ -86,8 +90,15 @@
 - (void)requestBoard
 {
     [BTBoard getList:_boardIndex.boardCategory withPage:_page delegate:self];
-    [self.navigationItem.rightBarButtonItem setEnabled:NO];
     requestEnable = NO;
+    [self.navigationItem.rightBarButtonItem setEnabled:requestEnable];
+}
+
+- (void)addDummyData
+{
+    NSArray *nilArray = [NSArray arrayWithObject:@""];
+    [data addObject:nilArray];
+    [table reloadData];
 }
 
 
@@ -102,11 +113,29 @@
 
 #pragma mark - Table view data source
 
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    return [data count] + 1;
+//}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (indexPath.row > 0 && (indexPath.row + 1) % 26 == 0) {
+        static NSString *iAdCellIdentifier = @"iadCell";
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iAdCellIdentifier] autorelease];
+        ADBannerView *banner = [[ADBannerView alloc] initWithFrame:CGRectZero];
+        self.coverView = [[UIView alloc] initWithFrame:banner.frame];
+        [_coverView setBackgroundColor:[UIColor colorWithWhite:0 alpha:1]];
+        [banner setDelegate:self];
+        [cell addSubview:banner];
+        NSLog(@"Add Banner!!");
+        [banner release];
+        return cell;
+    }
 
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
@@ -140,23 +169,33 @@
     [BTContents getContents:_boardIndex.boardCategory url:[board.url absoluteString] delegate:self];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row > 0 && (indexPath.row + 1) % 26 == 0) {
+        return 50.0;
+    }
+    return 44.0;
+}
+
+
 #pragma mark - BTRequesterDelegate method
 
 - (void)requestFinishedWithResults:(NSMutableArray *)results tag:(NSInteger)tag
 {
     if (tag == BoardTypeList) {
+        
         if (_page == 1) {
             self.data = results;
-            [table reloadData];
+            [self addDummyData];
             [self setScrollsToTop];
         } else {
             [data addObjectsFromArray:results];
-            [table reloadData];
+            [self addDummyData];
         }
         
-        [self.navigationItem.rightBarButtonItem setEnabled:YES];
         _page++;
         requestEnable = YES;
+        [self.navigationItem.rightBarButtonItem setEnabled:requestEnable];
     } else if (tag == BoardTypeContents) {
         _contentsView.contentsData = results;
         [self.navigationController pushViewController:_contentsView animated:YES];
@@ -171,5 +210,29 @@
         [self requestBoard];
     }
 }
+
+
+#pragma mark - ADBannerView delegate methods
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    if (!bannerIsVisible) {
+        [UIView beginAnimations:@"animationAdBannerOn" context:nil];
+        [_coverView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0]];
+        [UIView commitAnimations];
+        bannerIsVisible = YES;
+    }
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    if (bannerIsVisible) {
+        [UIView beginAnimations:@"animationAdBannerOff" context:nil];
+        [_coverView setBackgroundColor:[UIColor colorWithWhite:0 alpha:1]];
+        [UIView commitAnimations];
+        bannerIsVisible = NO;
+    }
+}
+
 
 @end
