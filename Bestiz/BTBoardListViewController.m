@@ -167,6 +167,7 @@
     _contentsView.btBoard = board;
     
     [BTContents getContents:_boardIndex.boardCategory url:[board.url absoluteString] delegate:self];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

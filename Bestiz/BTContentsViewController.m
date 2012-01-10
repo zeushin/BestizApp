@@ -135,6 +135,8 @@ static UIActivityIndicatorView *actView = nil;
 
 - (void)resizingView
 {
+    [self showRequestActivity];
+    
     // 웹뷰의 컨텐츠 크기만큼 프레임 조정
     CGRect webviewFrame = _webView.frame;
     webviewFrame.size.height = 1;
@@ -163,9 +165,9 @@ static UIActivityIndicatorView *actView = nil;
 {
     if (finishRequestComment && finishRequestWebView) {
         [self hideRequestActivity];
+//        [self hideRequestActivity];
         return YES;
     }
-    [self showRequestActivity];
     
     return NO;
 }
@@ -188,7 +190,7 @@ static UIActivityIndicatorView *actView = nil;
         {
             [_webView addSubview:actView];
         }
-        
+
         actView.tag += 1;
         [actView startAnimating];
     }
@@ -198,11 +200,14 @@ static UIActivityIndicatorView *actView = nil;
 {
     @synchronized(actView)
     {
-        actView.tag -= 1;
-        if (actView.tag < 0)
-        {
-            actView.tag = 0;
-        }
+        for (int tag = actView.tag ; tag > -1 ; tag -= 1) {
+            actView.tag = tag;
+        } 
+//        actView.tag -= 1;
+//        if (actView.tag < 0)
+//        {
+//            actView.tag = 0;
+//        }
         
         if (actView.tag == 0)
         {
@@ -287,7 +292,10 @@ static UIActivityIndicatorView *actView = nil;
 #pragma mark - UIWebView delegate method
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    [NSThread sleepForTimeInterval:1.0];
+    
     [self resizingView];
+    
     finishRequestWebView = YES;
     [self.navigationItem.rightBarButtonItem setEnabled:[self requestFinish]];
 }

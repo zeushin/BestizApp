@@ -153,12 +153,13 @@
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{    
+{
     BTBoardListViewController *detailViewController = [[BTBoardListViewController alloc] init];
     detailViewController.boardIndex = (BTBoardIndex *)[_boardIndexData objectAtIndex:indexPath.row];
     
     [self.navigationController pushViewController:detailViewController animated:YES];
     [detailViewController release];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
