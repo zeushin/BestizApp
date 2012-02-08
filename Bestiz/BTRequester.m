@@ -34,6 +34,7 @@ static UIView *alaphaView = nil;
 @synthesize requesterClass;
 @synthesize url = _url;
 @synthesize page = _page;
+@synthesize keyword = _keyword;
 @synthesize queue = _queue;
 @synthesize requestMehod = _requestMehod, boardType = _boardType;
 
@@ -41,6 +42,7 @@ static UIView *alaphaView = nil;
 {
     [_url release];
     [_queue release];
+    [_keyword release];
     
     [super dealloc];
 }
@@ -80,11 +82,17 @@ static UIView *alaphaView = nil;
 - (void)request
 {
     [self showRequestActivity];
-    NSString *getURL = nil;
+    NSString *getURL = _url;
+    
+    // page 파라미터
     if (_page > 0)
-        getURL = [NSString stringWithFormat:@"%@&page=%d", _url, _page];
-    else
-        getURL = _url;
+        getURL = [NSString stringWithFormat:@"%@&page=%d", getURL, _page];
+    
+    // 키워드 파라미터
+    if (_boardType == BoardTypeSearch) {
+        self.keyword = [_keyword stringByAddingPercentEscapesUsingEncoding:-2147481280];
+        getURL = [NSString stringWithFormat:@"%@&keyword=%@", getURL, _keyword];
+    }
     
     NSLog(@"requestURL: %@", getURL);
     NSURL *url = [NSURL URLWithString:getURL];
@@ -101,7 +109,8 @@ static UIView *alaphaView = nil;
     [request setUserInfo:userInfo];
     [request setTag:_boardType];
     [request setQueue:_queue];
-//    [request setDefaultResponseEncoding:-2147481280];
+    [request setDefaultResponseEncoding:-2147481280];
+//    [request setDefaultResponseEncoding:NSUTF8StringEncoding];
     
     [request startAsynchronous];
 }
@@ -128,11 +137,13 @@ static UIView *alaphaView = nil;
         }
         
         AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        UIViewController *vc = [app.navigationController.viewControllers lastObject];
+//        UIViewController *vc = [app.navigationController.viewControllers lastObject];
+//        CGPoint p;
+//        p.x = vc.view.frame.size.width / 2.0;
+//        p.y = vc.view.frame.size.height / 2.0;
         CGPoint p;
-        p.x = vc.view.frame.size.width / 2.0;
-        p.y = vc.view.frame.size.height / 2.0;
-        
+        p.x = app.window.frame.size.width / 2.0;
+        p.y = app.window.frame.size.height / 2.0;
 //        if (app.keyboardState == IFKeyboardStateUp)
 //        {
 //            p.y -= app.keyboardHeight / 2.0;
@@ -142,10 +153,11 @@ static UIView *alaphaView = nil;
         
         if (actView.tag == 0)
         {
-            alaphaView = [[UIView alloc] initWithFrame:vc.view.frame];
+            alaphaView = [[UIView alloc] initWithFrame:app.window.frame];
             [alaphaView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.6]];
             [alaphaView addSubview:actView];
-            [vc.view addSubview:alaphaView];
+            [app.window addSubview:alaphaView];
+            [alaphaView addSubview:actView];
         }
         
         actView.tag += 1;
@@ -167,6 +179,7 @@ static UIView *alaphaView = nil;
         {
             [actView stopAnimating];
             [actView removeFromSuperview];
+
             [alaphaView removeFromSuperview];
             [alaphaView release];
         }
@@ -177,33 +190,42 @@ static UIView *alaphaView = nil;
 #pragma mark - ASIHttpRequestDelegate Method
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    NSArray *parsingResult;
+    NSArray *parsingResult = [NSArray array];
     BestizParser *bestizParser = [[BestizParser alloc] init];
-    NSLog(@"%@", request);
+
+    NSLog(@"%@", [request responseStatusMessage]);
+//    NSLog(@"%@", [request responseHeaders]);
+
     NSString *responseString = [request responseString];
-    NSData *data = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-    switch (request.tag) {
-        case BoardTypeList:
-            parsingResult = [bestizParser parsingWithListOfData:data];
-            break;
-        case BoardTypeContents:
-            parsingResult = [bestizParser parsingWithContentsOfData:data];
-            break;
-        case BoardTypeComment:
-            parsingResult = [bestizParser parsingWithCommentOfData:data];
-            break;
-            
-        default:
-            break;
-    }
-    [bestizParser release];
     
-    NSString *requesterModelName = [request.userInfo objectForKey:REQUESTER_MODEL_NAME];
-    BTBaseParser *parser = [self __parserWithRequesterClassName:requesterModelName];
-    NSMutableArray *models = [parser parseToModels:parsingResult];
-    
-    if (delegate && [(NSObject *)delegate respondsToSelector:@selector(requestFinishedWithResults:tag:)]) {
-        [delegate requestFinishedWithResults:models tag:request.tag];
+    if (responseString) { // 응답 데이터가 있을경우에만...
+        NSData *data = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+
+        switch (request.tag) {
+            case BoardTypeList:
+                parsingResult = [bestizParser parsingWithListOfData:data];
+                break;
+            case BoardTypeContents:
+                parsingResult = [bestizParser parsingWithContentsOfData:data];
+                break;
+            case BoardTypeComment:
+                parsingResult = [bestizParser parsingWithCommentOfData:data];
+                break;
+            case BoardTypeSearch:
+                parsingResult = [bestizParser parsingWithListOfData:data];
+                break;
+            default:
+                break;
+        }
+        [bestizParser release];
+        
+        NSString *requesterModelName = [request.userInfo objectForKey:REQUESTER_MODEL_NAME];
+        BTBaseParser *parser = [self __parserWithRequesterClassName:requesterModelName];
+        NSMutableArray *models = [parser parseToModels:parsingResult];
+        
+        if (delegate && [(NSObject *)delegate respondsToSelector:@selector(requestFinishedWithResults:tag:)]) {
+            [delegate requestFinishedWithResults:models tag:request.tag];
+        }
     }
     
     [self hideRequestActivity];

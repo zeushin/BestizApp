@@ -19,7 +19,7 @@
 @property (nonatomic, retain) NSString *subject;
 @property (nonatomic, retain) NSString *contents;
 
-+ (void)getContents:(BoardCategory)board url:(NSString *)harfURL delegate:(id <BTRequesterDelegate>)delegate;
++ (void)getContents:(BoardCategory)board url:(NSString *)harfURL delegate:(id <BTRequesterDelegate>)delegate withRequestque:(NSOperationQueue *)queue;
 + (NSString *)getFullURLfromHarfURL:(NSString *)harfURL board:(BoardCategory)board;
 
 @end

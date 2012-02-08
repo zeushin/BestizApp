@@ -25,6 +25,7 @@ typedef enum {
     Class requesterClass;
     NSString *_url;
     NSUInteger _page;
+    NSString *_keyword;
     NSOperationQueue *_queue;
     BTRequestMethod _requestMehod;
     BoardType _boardType;
@@ -34,6 +35,7 @@ typedef enum {
 @property (nonatomic, assign) Class requesterClass;
 @property (nonatomic, retain) NSString *url;
 @property (nonatomic, assign) NSUInteger page;
+@property (nonatomic, retain) NSString *keyword;
 @property (nonatomic, retain) NSOperationQueue *queue;
 @property (nonatomic) BTRequestMethod requestMehod;
 @property (nonatomic) BoardType boardType;

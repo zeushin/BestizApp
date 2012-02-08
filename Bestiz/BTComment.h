@@ -19,6 +19,6 @@
 @property (nonatomic, retain) NSString *comment;
 @property (nonatomic, retain) NSString *ip;
 
-+ (void)getComment:(BoardCategory)board url:(NSString *)harfURL delegate:(id <BTRequesterDelegate>)delegate;
++ (void)getComment:(BoardCategory)board url:(NSString *)harfURL delegate:(id <BTRequesterDelegate>)delegate withRequestque:(NSOperationQueue *)queue;
 
 @end

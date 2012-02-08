@@ -20,7 +20,8 @@ typedef enum
 { // 게시물 형식
     BoardTypeList, // 리스트
     BoardTypeContents, // 본문
-    BoardTypeComment // 댓글
+    BoardTypeComment, // 댓글
+    BoardTypeSearch // 검색
 } BoardType;
 
 typedef enum

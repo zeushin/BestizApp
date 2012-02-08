@@ -7,16 +7,26 @@
 //
 
 #import "BTBaseViewController.h"
+#import "ASIHTTPRequest.h"
+
+@interface BTBaseViewController() {
+@private
+    
+}
+
+- (void)cancelRequests;
+@end
 
 @implementation BTBaseViewController
 
-@synthesize adView = _adView, bannerIsVisible;
+@synthesize bannerIsVisible, requestQueue;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.requestQueue = [[[NSOperationQueue alloc] init] autorelease];
     }
     return self;
 }
@@ -35,7 +45,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [_adView setDelegate:self];
 
     self.bannerIsVisible = NO;
 }
@@ -44,7 +53,6 @@
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -55,10 +63,24 @@
 
 - (void)dealloc
 {    
-    [_adView release];
+    [requestQueue release];
     
     [super dealloc];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self cancelRequests];
+}
+
+- (void)cancelRequests
+{
+    [requestQueue cancelAllOperations];
+    //    [requestQueue.operations makeObjectsPerformSelector:@selector(clearDelegatesAndCancel)];
+    [[ASIHTTPRequest sharedQueue] cancelAllOperations];
+    //    [[[ASIHTTPRequest sharedQueue] operations] makeObjectsPerformSelector:@selector(clearDelegatesAndCancel)];
+}
 
 @end

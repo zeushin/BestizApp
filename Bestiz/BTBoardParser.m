@@ -17,6 +17,7 @@
     board.subject = [self parseToString:[dic objectForKey:BOARD_SUBJECT]];
     board.name = [self parseToString:[dic objectForKey:BOARD_NAME]];
     board.url = [NSURL URLWithString:[self parseToString:[dic objectForKey:BOARD_URL]]];
+    board.totalPage = [self parseToInt:[dic objectForKey:BOARD_TOTALPAGE]];
     
     return board;
 }

@@ -19,6 +19,7 @@
     
     HTMLParser *parser = [[HTMLParser alloc] initWithData:urlData error:nil];
     HTMLNode *body = [parser body];
+//    [parser release];
     
     return body;
 }
@@ -30,6 +31,7 @@
     
     HTMLParser *parser = [[HTMLParser alloc] initWithData:data error:nil];
     HTMLNode *body = [parser body];
+//    [parser release];
     
     return body;
 }
@@ -44,7 +46,9 @@
     NSMutableArray *allContents = [NSMutableArray array];
     
     HTMLNode *body = [self parsingOfData:data];
+
     NSArray *trs = [body findChildrenWithAttribute:@"onmouseover" matchingName:@"#F9F9F9" allowPartial:YES];
+    
     for (HTMLNode *tr in trs)
     {
         NSArray *tds = [tr findChildTags:@"td"];

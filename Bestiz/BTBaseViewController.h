@@ -12,15 +12,17 @@
 #import "BestizParser.h"
 #import "BTRequesterDelegate.h"
 
+#define SHOW_BANNER 0
+
 const static CGFloat kFontSize = 12.0f;
 
 @interface BTBaseViewController : UIViewController <ADBannerViewDelegate>
 {
     BOOL bannerIsVisible;
-    ADBannerView *adView;
+    NSOperationQueue *requestQueue;
 }
 
-@property (nonatomic, retain) IBOutlet ADBannerView *adView;
 @property (nonatomic, assign) BOOL bannerIsVisible;
+@property (nonatomic, retain) NSOperationQueue *requestQueue;
 
 @end

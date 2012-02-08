@@ -21,7 +21,7 @@
     [super dealloc];
 }
 
-+ (void)getContents:(BoardCategory)board url:(NSString *)harfURL delegate:(id <BTRequesterDelegate>)delegate
++ (void)getContents:(BoardCategory)board url:(NSString *)harfURL delegate:(id <BTRequesterDelegate>)delegate withRequestque:(NSOperationQueue *)queue
 {
     BTBoardIndex *boardIndex = [[BTBoardIndex alloc] init];
     NSString *urlString = nil;
@@ -55,6 +55,8 @@
         requester.requestMehod = BTRequestMethodGET;
         requester.boardType = BoardTypeContents;
         requester.page = 0;
+        requester.queue = queue;
+        
         [requester request];
     }
 }

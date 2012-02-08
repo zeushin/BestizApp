@@ -26,7 +26,7 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     BTMainTableViewController *mainTableViewController = [[BTMainTableViewController alloc] init];
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:mainTableViewController];
+    self.navigationController = [[[UINavigationController alloc] initWithRootViewController:mainTableViewController] autorelease];
     self.window.rootViewController = self.navigationController;
     [mainTableViewController release];
 

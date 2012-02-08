@@ -25,5 +25,6 @@
 @property (nonatomic, retain) IBOutlet UITableView *table;
 
 - (void)setScrollsToTop;
+- (void)setScrollsToFirstRow;
 
 @end

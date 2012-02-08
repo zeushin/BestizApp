@@ -43,7 +43,7 @@
 
 - (NSString *)urlOfBoard:(BoardCategory)category boardType:(BoardType)boardType
 {
-    NSString *boardUrl;
+    NSString *boardUrl = nil;
 
     if (boardType == BoardTypeList)
     {

@@ -12,9 +12,11 @@
 @interface BTContentsViewController : BTListViewController <BTRequesterDelegate, UIWebViewDelegate>
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, retain) IBOutlet UIControl *headerView;
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
 @property (nonatomic, retain) IBOutlet UILabel *titleLabel;
 @property (nonatomic, retain) IBOutlet UILabel *nameLabel;
+@property (nonatomic, retain) IBOutlet ADBannerView *bannerView1;
 
 @property (nonatomic, retain) BTBoard *btBoard;
 @property (nonatomic, retain) NSMutableArray *contentsData;

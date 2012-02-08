@@ -25,6 +25,7 @@
 @implementation BTMainTableViewController
 
 @synthesize boardIndexData = _boardIndexData;
+@synthesize bannerView1 = _bannerView1;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -58,7 +59,7 @@
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.bannerView1 = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -90,6 +91,7 @@
 - (void)dealloc
 {
     [_boardIndexData release];
+    [_bannerView1 release];
     
     [super dealloc];
 }
@@ -163,6 +165,7 @@
 }
 
 
+#if SHOW_BANNER
 #pragma mark - ADBannerView delegate methods
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
@@ -184,6 +187,6 @@
         bannerIsVisible = NO;
     }
 }
-
+#endif
 
 @end

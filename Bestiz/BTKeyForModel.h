@@ -13,6 +13,7 @@ static NSString *BOARD_DATE = @"date";
 static NSString *BOARD_READ = @"read";
 static NSString *BOARD_VOTE = @"vote";
 static NSString *BOARD_URL = @"href";
+static NSString *BOARD_TOTALPAGE = @"total_page";
 
 static NSString *CONTENTS_NAME = @"name";
 static NSString *CONTENTS_SUBJECT = @"subject";

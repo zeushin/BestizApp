@@ -13,4 +13,6 @@
     
 }
 
+@property (nonatomic, retain) IBOutlet ADBannerView *bannerView1;
+
 @end

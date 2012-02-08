@@ -73,6 +73,16 @@
 {
     if ([data count] > 0)
     {
+        [table scrollRectToVisible:CGRectMake(0, 0, table.frame.size.width, table.frame.size.height) animated:YES];
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//        [table scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];        
+    }
+}
+
+- (void)setScrollsToFirstRow
+{
+    if ([data count] > 0)
+    {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [table scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];        
     }
