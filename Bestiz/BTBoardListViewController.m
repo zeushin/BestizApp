@@ -15,7 +15,7 @@
 @private
     
     BOOL requestEnable;
-    BOOL hadSearched;
+    BOOL isSearching;
 }
 
 @property (nonatomic, retain) BTContentsViewController *contentsView;
@@ -122,7 +122,16 @@
 
 - (void)requestBoard
 {
-    [BTBoard getList:_boardIndex.boardCategory withPage:_page delegate:self withRequestque:requestQueue];
+    if (!isSearching) {
+        [BTBoard getList:_boardIndex.boardCategory withPage:_page delegate:self withRequestque:requestQueue];
+    } else {
+        BTBoard *board = [_searchedData lastObject];
+        if (![board.number isEqualToString:@"1"]) // 마지막 글 넘버가 1일때 더이상 페이지 안나옴. 더검색 기능 없음.
+        {
+        [BTBoard searchList:_boardIndex.boardCategory keyword:_searchBar.text page:_searchPage delegate:self withRequestque:nil];
+        }
+    }
+    
     requestEnable = NO;
     [self.navigationItem.rightBarButtonItem setEnabled:requestEnable];
 }
@@ -154,7 +163,7 @@
 {
     NSLog(@"%@", tableView);
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        if (!hadSearched) {
+        if (!isSearching) {
             return [_autoSugData count];
         }
         NSLog(@"searched data count: %d", [_searchedData count]);
@@ -177,34 +186,36 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     BTBoard *board = nil;
+    
     if (tableView == self.searchDisplayController.searchResultsTableView)
-    { // 테이블뷰 = 검색결과
-        if (!hadSearched)
+    { // 테이블 = 검색결과
+        if (!isSearching)
         { // 검색시작 전 자동완성테이블 (게봄에만 적용)
             static NSString *CellIdentifier = @"AutoSugCell";
-            
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            
+
             if (cell == nil)
             {
                 cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
                 NSLog(@"%@", [_autoSugData objectAtIndex:indexPath.row]);
                 [cell.textLabel setText:[_autoSugData objectAtIndex:indexPath.row]];
+                
+                return cell;
             }
         }
         
         board = [_searchedData objectAtIndex:indexPath.row];
     }
     else
-    {
+    { // 테이블 : 게시글
         board = [data objectAtIndex:indexPath.row];    
     }
     
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
 //    if (indexPath.row > 0 && (indexPath.row + 1) % 26 == 0) {
 //        NSString *iAdCellIdentifier = @"iadCell";
@@ -292,13 +303,12 @@
             [self setScrollsToFirstRow];
         } else {
             [data addObjectsFromArray:results];
-            [table reloadData];
             //            [self addDummyData];
+            [table reloadData];
         }
-        
+                
         _page++;
-        requestEnable = YES;
-        [self.navigationItem.rightBarButtonItem setEnabled:requestEnable];
+        
         [_searchBar setHidden:NO];
         
     }
@@ -309,12 +319,19 @@
     }
     else if (tag == BoardTypeSearch)
     {
-        self.searchedData = results;
+        if (_searchPage == 1) {
+            self.searchedData = results;
+        } else {
+            [_searchedData addObjectsFromArray:results];
+        }
+        
         [self.searchDisplayController.searchResultsTableView reloadData];
         
-
-//        [table reloadData];
+        _searchPage++;
     }
+    
+    requestEnable = YES;
+    [self.navigationItem.rightBarButtonItem setEnabled:requestEnable];
 }
 
 
@@ -370,8 +387,6 @@
     frame.size.height -= 44;
     [self.searchDisplayController.searchResultsTableView setFrame:frame];
     
-    NSLog(@"%@", self.searchDisplayController.searchResultsTableView);
-    
     return YES;
 }
 
@@ -396,13 +411,13 @@
 {
     [searchBar resignFirstResponder];
 //    [table reloadData];
-    hadSearched = NO;
+    isSearching = NO;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    [BTBoard searchList:_boardIndex.boardCategory keyword:searchBar.text page:_page delegate:self withRequestque:nil];
-    hadSearched = YES;
+    isSearching = YES;
+    [self requestBoard];
 }
 
 

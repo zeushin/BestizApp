@@ -92,10 +92,12 @@ static UIView *alaphaView = nil;
     if (_boardType == BoardTypeSearch) {
         self.keyword = [_keyword stringByAddingPercentEscapesUsingEncoding:-2147481280];
         getURL = [NSString stringWithFormat:@"%@&keyword=%@", getURL, _keyword];
+    } else {
+        getURL = [getURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     }
     
-    NSLog(@"requestURL: %@", getURL);
     NSURL *url = [NSURL URLWithString:getURL];
+    NSLog(@"requestURL: %@", url);
     
     ASIHTTPRequest *request = [[[ASIHTTPRequest alloc] initWithURL:url] autorelease];
     
@@ -193,7 +195,7 @@ static UIView *alaphaView = nil;
     NSArray *parsingResult = [NSArray array];
     BestizParser *bestizParser = [[BestizParser alloc] init];
 
-    NSLog(@"%@", [request responseStatusMessage]);
+    NSLog(@"Response Status Message: %@", [request responseStatusMessage]);
 //    NSLog(@"%@", [request responseHeaders]);
 
     NSString *responseString = [request responseString];

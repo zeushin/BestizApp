@@ -13,9 +13,10 @@
 @protocol BTRequestableModelProtocol
 
 @optional
-+ (void)getList:(BoardCategory)board withPage:(NSUInteger)page delegate:(id <BTRequesterDelegate>)delegate;
-+ (void)getContents:(BoardCategory)board url:(NSString *)harfURL delegate:(id <BTRequesterDelegate>)delegate;
-+ (void)getComment:(BoardCategory)board url:(NSString *)harfURL delegate:(id <BTRequesterDelegate>)delegate;
++ (void)searchList:(BoardCategory)board keyword:(NSString *)keyword page:(NSUInteger)page delegate:(id <BTRequesterDelegate>)delegate withRequestque:(NSOperationQueue *)queue;
++ (void)getList:(BoardCategory)board withPage:(NSUInteger)page delegate:(id <BTRequesterDelegate>)delegate withRequestque:(NSOperationQueue *)queue;
++ (void)getContents:(BoardCategory)board url:(NSString *)harfURL delegate:(id <BTRequesterDelegate>)delegate withRequestque:(NSOperationQueue *)queue;
++ (void)getComment:(BoardCategory)board url:(NSString *)harfURL delegate:(id <BTRequesterDelegate>)delegate withRequestque:(NSOperationQueue *)queue;
 
 @end
 

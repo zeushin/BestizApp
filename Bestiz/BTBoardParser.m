@@ -12,11 +12,17 @@
 
 - (BTBaseModel *)parseToModel:(NSDictionary *)dic
 {
+//    NSString *st = [self parseToString:[dic objectForKey:BOARD_URL]];
+//    st = [st stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    NSURL *url = [NSURL URLWithString:st];
+//    NSLog(@"NSString: %@", st);
+//    NSLog(@"NSURL: %@", url);
     BTBoard *board = [[[BTBoard alloc] init] autorelease];
     board.number = [self parseToString:[dic objectForKey:BOARD_NO]];
     board.subject = [self parseToString:[dic objectForKey:BOARD_SUBJECT]];
     board.name = [self parseToString:[dic objectForKey:BOARD_NAME]];
-    board.url = [NSURL URLWithString:[self parseToString:[dic objectForKey:BOARD_URL]]];
+    NSString *urlString = [[self parseToString:[dic objectForKey:BOARD_URL]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    board.url = [NSURL URLWithString:urlString];
     board.totalPage = [self parseToInt:[dic objectForKey:BOARD_TOTALPAGE]];
     
     return board;
