@@ -219,7 +219,6 @@ static UIView *alaphaView = nil;
             default:
                 break;
         }
-        [bestizParser release];
         
         NSString *requesterModelName = [request.userInfo objectForKey:REQUESTER_MODEL_NAME];
         BTBaseParser *parser = [self __parserWithRequesterClassName:requesterModelName];
@@ -229,6 +228,7 @@ static UIView *alaphaView = nil;
             [delegate requestFinishedWithResults:models tag:request.tag];
         }
     }
+    [bestizParser release];
     
     [self hideRequestActivity];
 }

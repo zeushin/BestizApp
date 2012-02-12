@@ -24,6 +24,8 @@
 @property (nonatomic) NSUInteger searchPage;
 @property (nonatomic, retain) NSMutableArray *searchedData;
 @property (nonatomic, retain) NSMutableArray *autoSugData;
+@property (nonatomic, retain) NSString *searchedWord;
+@property (nonatomic, retain) NSString *condition;
 //@property (nonatomic, retain) ADBannerView *bannerView2;
 
 - (void)requestBoard;
@@ -42,6 +44,8 @@
 @synthesize searchPage = _searchPage;
 @synthesize searchedData = _searchedData;
 @synthesize autoSugData = _autoSugData;
+@synthesize searchedWord = _searchedWord;
+@synthesize condition = _condition;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,6 +56,8 @@
         requestEnable = YES;
         isSearching = NO;
         hasSearched = NO;
+        self.searchedWord = [NSString string];
+        self.condition = [NSString string];
     }
     return self;
 }
@@ -117,6 +123,8 @@
     [_searchBar release];
     [_searchedData release];
     [_autoSugData release];
+//    [_searchedWord release];
+    [_condition release];
     
     [super dealloc];
 }
@@ -127,7 +135,8 @@
 {
     if (requestEnable) {
         if (isSearching || hasSearched) { // 검색 결과 요청
-            [BTBoard searchList:_boardIndex.boardCategory keyword:_searchBar.text page:_searchPage delegate:self withRequestque:nil];
+            NSString *keyword = [_searchedWord stringByAppendingString:_condition];
+            [BTBoard searchList:_boardIndex.boardCategory keyword:keyword page:_searchPage delegate:self withRequestque:nil];
         } else { // 그냥 게시글 요청
             [BTBoard getList:_boardIndex.boardCategory withPage:_page delegate:self withRequestque:requestQueue];
         }
@@ -409,6 +418,8 @@
     frame.size.height -= 44;
     [self.searchDisplayController.searchResultsTableView setFrame:frame];
     
+    [searchBar setSelectedScopeButtonIndex:1];
+    
     return YES;
 }
 
@@ -435,15 +446,14 @@
     requestEnable = NO;
 }
 
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
-{
-//    isSearching = NO;
-}
+//- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+//{
+//
+//}
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
-//    [table reloadData];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
@@ -453,7 +463,35 @@
     requestEnable = YES;
     _searchPage = 1;
     
+    _searchedWord = searchBar.text;
+    [self searchBar:searchBar selectedScopeButtonIndexDidChange:searchBar.selectedScopeButtonIndex];
+    
     [self requestBoard];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope
+{
+    switch (selectedScope) {
+        case 0:
+            // 이름으로 검색
+            _condition = @"&sn=on";
+            break;
+            
+        case 1:
+            // 제목으로 검색
+            _condition = @"&ss=on";
+            break;
+            
+        case 2:
+            // 둘다로 검색
+            _condition = @"&ss=on&sn=on";
+            break;
+            
+        default:
+            // 제목으로 검색
+            _condition = @"&sn=on";
+            break;
+    }
 }
 
 
@@ -462,8 +500,11 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
     hasSearched = NO;
+    if (isSearching || hasSearched) {
+        return YES;
+    }
         
-    return YES;
+    return NO;
 }
 
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
