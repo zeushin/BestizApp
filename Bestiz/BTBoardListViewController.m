@@ -16,6 +16,7 @@
     
     BOOL requestEnable;
     BOOL isSearching;
+    BOOL hasSearched;
 }
 
 @property (nonatomic, retain) BTContentsViewController *contentsView;
@@ -49,6 +50,8 @@
         self.page = 1;
         self.searchPage = 1;
         requestEnable = YES;
+        isSearching = NO;
+        hasSearched = NO;
     }
     return self;
 }
@@ -122,18 +125,19 @@
 
 - (void)requestBoard
 {
-    if (!isSearching) {
+    if (!isSearching && !hasSearched && table != self.searchDisplayController.searchResultsTableView) { // 그냥 게시글 요청
         [BTBoard getList:_boardIndex.boardCategory withPage:_page delegate:self withRequestque:requestQueue];
-    } else {
+    } else { // 검색 결과 요청
         BTBoard *board = [_searchedData lastObject];
-        if (![board.number isEqualToString:@"1"]) // 마지막 글 넘버가 1일때 더이상 페이지 안나옴. 더검색 기능 없음.
-        {
+        if (![board.number isEqualToString:@"1"]) 
+        { // 마지막 글 넘버가 1일때 더이상 페이지 안나옴. 더검색 기능 없음.
         [BTBoard searchList:_boardIndex.boardCategory keyword:_searchBar.text page:_searchPage delegate:self withRequestque:nil];
         }
     }
     
     requestEnable = NO;
     [self.navigationItem.rightBarButtonItem setEnabled:requestEnable];
+    [self hideKeyboard];
 }
 
 - (void)addDummyData
@@ -161,9 +165,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"%@", tableView);
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        if (!isSearching) {
+        if (isSearching && _boardIndex.boardCategory == BoardCategoryGuestSpring) {
             return [_autoSugData count];
         }
         NSLog(@"searched data count: %d", [_searchedData count]);
@@ -177,42 +180,55 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row % 2 == 0) {
-        [cell setBackgroundColor:[UIColor colorWithRed:242.0/255.0 green:246.0/255.0 blue:251.0/255.0 alpha:0.9]];
-    } else {
-        [cell setBackgroundColor:[UIColor whiteColor]];
+    if (!isSearching) {
+        if (indexPath.row % 2 == 0) {
+            [cell setBackgroundColor:[UIColor colorWithRed:242.0/255.0 green:246.0/255.0 blue:251.0/255.0 alpha:0.9]];
+        } else {
+            [cell setBackgroundColor:[UIColor whiteColor]];
+        }   
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"";
     
+    if (tableView == self.searchDisplayController.searchResultsTableView && isSearching && _boardIndex.boardCategory == BoardCategoryGuestSpring) // 검색시작 전 자동완성테이블 (게봄에만 적용)
+    { 
+        CellIdentifier = @"AutoSugCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil)
+        {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+            
+            if ([indexPath row] < [_autoSugData count]) {
+                [cell.textLabel setText:[_autoSugData objectAtIndex:indexPath.row]];
+            }
+            
+        }
+        
+        return cell;
+    }
+    
+    CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     BTBoard *board = nil;
     
     if (tableView == self.searchDisplayController.searchResultsTableView)
     { // 테이블 = 검색결과
-        if (!isSearching)
-        { // 검색시작 전 자동완성테이블 (게봄에만 적용)
-            static NSString *CellIdentifier = @"AutoSugCell";
-
-            if (cell == nil)
-            {
-                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-                NSLog(@"%@", [_autoSugData objectAtIndex:indexPath.row]);
-                [cell.textLabel setText:[_autoSugData objectAtIndex:indexPath.row]];
-                
-                return cell;
-            }
-        }
         
-        board = [_searchedData objectAtIndex:indexPath.row];
+        if ([indexPath row] < [_searchedData count]) {
+            board = [_searchedData objectAtIndex:indexPath.row];
+        }
     }
     else
     { // 테이블 : 게시글
-        board = [data objectAtIndex:indexPath.row];    
+        
+        if ([indexPath row] < [data count]) {
+            board = [data objectAtIndex:indexPath.row];
+        }
     }
     
 //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -241,9 +257,11 @@
     
     // Configure the cell...
     
-    NSString *string = [NSString stringWithFormat:@"%@  %@", board.number, board.name];
-    [cell.textLabel setText:string];
-    [cell.detailTextLabel setText:board.subject];
+    if (board) {
+        NSString *string = [NSString stringWithFormat:@"%@  %@", board.number, board.name];
+        [cell.textLabel setText:string];
+        [cell.detailTextLabel setText:board.subject];
+    }
     
     return cell;
 }
@@ -253,20 +271,25 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.contentsView = [[[BTContentsViewController alloc] init] autorelease];
-    _contentsView.boardIndex = _boardIndex;
-    
-    BTBoard *board = nil;
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        board = [_searchedData objectAtIndex:indexPath.row];
+    if (tableView == self.searchDisplayController.searchResultsTableView && isSearching && _boardIndex.boardCategory == BoardCategoryGuestSpring) {
+        _searchBar.text = [_autoSugData objectAtIndex:indexPath.row];
+        [self searchBarSearchButtonClicked:_searchBar];
     } else {
-        board = [data objectAtIndex:indexPath.row];
+        self.contentsView = [[[BTContentsViewController alloc] init] autorelease];
+        _contentsView.boardIndex = _boardIndex;
+        
+        BTBoard *board = nil;
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            board = [_searchedData objectAtIndex:indexPath.row];
+        } else {
+            board = [data objectAtIndex:indexPath.row];
+        }
+        _contentsView.harfURL = [board.url absoluteString];
+        _contentsView.btBoard = board;
+        
+        [BTContents getContents:_boardIndex.boardCategory url:[board.url absoluteString] delegate:self withRequestque:requestQueue];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
-    _contentsView.harfURL = [board.url absoluteString];
-    _contentsView.btBoard = board;
-    
-    [BTContents getContents:_boardIndex.boardCategory url:[board.url absoluteString] delegate:self withRequestque:requestQueue];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 //- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -310,7 +333,6 @@
         _page++;
         
         [_searchBar setHidden:NO];
-        
     }
     else if (tag == BoardTypeContents)
     {
@@ -326,7 +348,7 @@
         }
         
         [self.searchDisplayController.searchResultsTableView reloadData];
-        
+
         _searchPage++;
     }
     
@@ -407,16 +429,30 @@
     return YES;
 }
 
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    isSearching = YES;
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    isSearching = NO;
+}
+
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
 //    [table reloadData];
-    isSearching = NO;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    isSearching = YES;
+    hasSearched = YES;
+    
+    [self.searchDisplayController.searchResultsTableView setBackgroundColor:[UIColor clearColor]];
+    [self.searchDisplayController.searchResultsTableView setRowHeight:44];
+    [self.searchDisplayController.searchResultsTableView setScrollEnabled:YES];
+
     [self requestBoard];
 }
 
@@ -425,12 +461,27 @@
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
+    hasSearched = NO;
+    
+    if (isSearching && _boardIndex.boardCategory != BoardCategoryGuestSpring) {
+        [controller.searchResultsTableView setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.8]];
+        [controller.searchResultsTableView setRowHeight:800];
+        [controller.searchResultsTableView setScrollEnabled:NO];
+        return NO;
+    }
     return YES;
 }
 
-- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
+- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView
 {
-    
+    [controller.searchResultsTableView setBackgroundColor:[UIColor clearColor]];
+    [controller.searchResultsTableView setRowHeight:44];
+    [controller.searchResultsTableView setScrollEnabled:YES];
+}
+
+- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
+{
+    hasSearched = NO;
 }
 
 
