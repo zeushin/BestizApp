@@ -247,6 +247,15 @@ static UIActivityIndicatorView *actView = nil;
 
 #pragma mark - Table view data source
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (data) {
+        NSLog(@"Comment count: %d", [data count]);
+        return [data count];   
+    }
+    return 0;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"BTCommentCell";

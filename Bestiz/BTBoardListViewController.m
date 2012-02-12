@@ -27,7 +27,7 @@
 //@property (nonatomic, retain) ADBannerView *bannerView2;
 
 - (void)requestBoard;
-- (void)addDummyData;
+//- (void)addDummyData;
 - (void)hideKeyboard;
 
 @end
@@ -125,13 +125,11 @@
 
 - (void)requestBoard
 {
-    if (!isSearching && !hasSearched && table != self.searchDisplayController.searchResultsTableView) { // 그냥 게시글 요청
-        [BTBoard getList:_boardIndex.boardCategory withPage:_page delegate:self withRequestque:requestQueue];
-    } else { // 검색 결과 요청
-        BTBoard *board = [_searchedData lastObject];
-        if (![board.number isEqualToString:@"1"]) 
-        { // 마지막 글 넘버가 1일때 더이상 페이지 안나옴. 더검색 기능 없음.
-        [BTBoard searchList:_boardIndex.boardCategory keyword:_searchBar.text page:_searchPage delegate:self withRequestque:nil];
+    if (requestEnable) {
+        if (isSearching || hasSearched) { // 검색 결과 요청
+            [BTBoard searchList:_boardIndex.boardCategory keyword:_searchBar.text page:_searchPage delegate:self withRequestque:nil];
+        } else { // 그냥 게시글 요청
+            [BTBoard getList:_boardIndex.boardCategory withPage:_page delegate:self withRequestque:requestQueue];
         }
     }
     
@@ -140,12 +138,12 @@
     [self hideKeyboard];
 }
 
-- (void)addDummyData
-{
-    NSArray *nilArray = [NSArray arrayWithObject:@""];
-    [data addObject:nilArray];
-    [table reloadData];
-}
+//- (void)addDummyData
+//{
+//    NSArray *nilArray = [NSArray arrayWithObject:@""];
+//    [data addObject:nilArray];
+//    [table reloadData];
+//}
 
 - (void)hideKeyboard
 {
@@ -209,61 +207,61 @@
         }
         
         return cell;
-    }
-    
-    CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    BTBoard *board = nil;
-    
-    if (tableView == self.searchDisplayController.searchResultsTableView)
-    { // 테이블 = 검색결과
+    } else {
+        CellIdentifier = @"Cell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
-        if ([indexPath row] < [_searchedData count]) {
-            board = [_searchedData objectAtIndex:indexPath.row];
+        BTBoard *board = nil;
+        
+        if (tableView == self.searchDisplayController.searchResultsTableView)
+        { // 테이블 = 검색결과
+            
+            if ([indexPath row] < [_searchedData count]) {
+                board = [_searchedData objectAtIndex:indexPath.row];
+            }
         }
-    }
-    else
-    { // 테이블 : 게시글
-        
-        if ([indexPath row] < [data count]) {
-            board = [data objectAtIndex:indexPath.row];
+        else
+        { // 테이블 : 게시글
+            
+            if ([indexPath row] < [data count]) {
+                board = [data objectAtIndex:indexPath.row];
+            }
         }
-    }
-    
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-//    if (indexPath.row > 0 && (indexPath.row + 1) % 26 == 0) {
-//        NSString *iAdCellIdentifier = @"iadCell";
-//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iAdCellIdentifier] autorelease];
-//        
-//        // 두번째 배너 에드
-//        [cell addSubview:bannerView2];
-//        
-//        NSLog(@"Add Banner!!");
-//
-//        return cell;
-//    }
-
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         
-        [cell.textLabel setFont:[UIFont systemFontOfSize:kFontSize-1]];
-        [cell.detailTextLabel setFont:[UIFont systemFontOfSize:kFontSize]];
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-        [cell.detailTextLabel setMinimumFontSize:10.0f];
-        [cell.detailTextLabel setAdjustsFontSizeToFitWidth:YES];
+        //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        //    if (indexPath.row > 0 && (indexPath.row + 1) % 26 == 0) {
+        //        NSString *iAdCellIdentifier = @"iadCell";
+        //        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iAdCellIdentifier] autorelease];
+        //        
+        //        // 두번째 배너 에드
+        //        [cell addSubview:bannerView2];
+        //        
+        //        NSLog(@"Add Banner!!");
+        //
+        //        return cell;
+        //    }
+        
+        if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+            
+            [cell.textLabel setFont:[UIFont systemFontOfSize:kFontSize-1]];
+            [cell.detailTextLabel setFont:[UIFont systemFontOfSize:kFontSize]];
+            [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+            [cell.detailTextLabel setMinimumFontSize:10.0f];
+            [cell.detailTextLabel setAdjustsFontSizeToFitWidth:YES];
+        }
+        
+        // Configure the cell...
+        
+        if (board) {
+            NSString *string = [NSString stringWithFormat:@"%@  %@", board.number, board.name];
+            [cell.textLabel setText:string];
+            [cell.detailTextLabel setText:board.subject];
+        }
+        
+        return cell;
     }
-    
-    // Configure the cell...
-    
-    if (board) {
-        NSString *string = [NSString stringWithFormat:@"%@  %@", board.number, board.name];
-        [cell.textLabel setText:string];
-        [cell.detailTextLabel setText:board.subject];
-    }
-    
-    return cell;
 }
 
 
@@ -274,6 +272,7 @@
     if (tableView == self.searchDisplayController.searchResultsTableView && isSearching && _boardIndex.boardCategory == BoardCategoryGuestSpring) {
         _searchBar.text = [_autoSugData objectAtIndex:indexPath.row];
         [self searchBarSearchButtonClicked:_searchBar];
+        isSearching = NO;
     } else {
         self.contentsView = [[[BTContentsViewController alloc] init] autorelease];
         _contentsView.boardIndex = _boardIndex;
@@ -360,7 +359,8 @@
 #pragma mark - BTListViewController delegate method
 - (void)didReachedBottomOfTableView
 {
-    if (requestEnable) {
+    BTBoard *board = [_searchedData lastObject];
+    if (requestEnable && ![board.number isEqualToString:@"1"]) { // 마지막 글 넘버가 1일때 더이상 리퀘스트 안함. 더검색 기능 없음.
         [self requestBoard];
     }
 }
@@ -432,11 +432,12 @@
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
     isSearching = YES;
+    requestEnable = NO;
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
-    isSearching = NO;
+//    isSearching = NO;
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
@@ -447,12 +448,11 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    isSearching = NO;
     hasSearched = YES;
+    requestEnable = YES;
+    _searchPage = 1;
     
-    [self.searchDisplayController.searchResultsTableView setBackgroundColor:[UIColor clearColor]];
-    [self.searchDisplayController.searchResultsTableView setRowHeight:44];
-    [self.searchDisplayController.searchResultsTableView setScrollEnabled:YES];
-
     [self requestBoard];
 }
 
@@ -462,21 +462,8 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
     hasSearched = NO;
-    
-    if (isSearching && _boardIndex.boardCategory != BoardCategoryGuestSpring) {
-        [controller.searchResultsTableView setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.8]];
-        [controller.searchResultsTableView setRowHeight:800];
-        [controller.searchResultsTableView setScrollEnabled:NO];
-        return NO;
-    }
+        
     return YES;
-}
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView
-{
-    [controller.searchResultsTableView setBackgroundColor:[UIColor clearColor]];
-    [controller.searchResultsTableView setRowHeight:44];
-    [controller.searchResultsTableView setScrollEnabled:YES];
 }
 
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
