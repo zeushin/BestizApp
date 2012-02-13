@@ -24,7 +24,6 @@
 @property (nonatomic) NSUInteger searchPage;
 @property (nonatomic, retain) NSMutableArray *searchedData;
 @property (nonatomic, retain) NSMutableArray *autoSugData;
-@property (nonatomic, retain) NSString *searchedWord;
 @property (nonatomic, retain) NSString *condition;
 //@property (nonatomic, retain) ADBannerView *bannerView2;
 
@@ -44,7 +43,6 @@
 @synthesize searchPage = _searchPage;
 @synthesize searchedData = _searchedData;
 @synthesize autoSugData = _autoSugData;
-@synthesize searchedWord = _searchedWord;
 @synthesize condition = _condition;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -56,7 +54,6 @@
         requestEnable = YES;
         isSearching = NO;
         hasSearched = NO;
-        self.searchedWord = [NSString string];
         self.condition = [NSString string];
     }
     return self;
@@ -123,7 +120,6 @@
     [_searchBar release];
     [_searchedData release];
     [_autoSugData release];
-//    [_searchedWord release];
     [_condition release];
     
     [super dealloc];
@@ -135,7 +131,7 @@
 {
     if (requestEnable) {
         if (isSearching || hasSearched) { // 검색 결과 요청
-            NSString *keyword = [_searchedWord stringByAppendingString:_condition];
+            NSString *keyword = [_searchBar.text stringByAppendingString:_condition];
             [BTBoard searchList:_boardIndex.boardCategory keyword:keyword page:_searchPage delegate:self withRequestque:nil];
         } else { // 그냥 게시글 요청
             [BTBoard getList:_boardIndex.boardCategory withPage:_page delegate:self withRequestque:requestQueue];
@@ -165,6 +161,8 @@
 - (void)refreshTable:(UIBarButtonItem *)button
 {
     _page = 1;
+    _searchPage = 1;
+
     [self requestBoard];
 }
 
@@ -364,6 +362,10 @@
     [self.navigationItem.rightBarButtonItem setEnabled:requestEnable];
 }
 
+- (void)requestFailed
+{
+    requestEnable = YES;
+}
 
 #pragma mark - BTListViewController delegate method
 - (void)didReachedBottomOfTableView
@@ -463,7 +465,6 @@
     requestEnable = YES;
     _searchPage = 1;
     
-    _searchedWord = searchBar.text;
     [self searchBar:searchBar selectedScopeButtonIndexDidChange:searchBar.selectedScopeButtonIndex];
     
     [self requestBoard];
@@ -510,6 +511,7 @@
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
 {
     hasSearched = NO;
+    requestEnable = YES;
 }
 
 

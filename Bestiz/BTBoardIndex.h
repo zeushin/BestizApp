@@ -55,7 +55,7 @@ typedef enum
 // 게스트 천국 ID
 #define GUEST_HEAVEN_BOARD_ID @"id=gworld0707"
 // 게천 잡담 ID
-#define GUEST_HEAVEN_CHATTER_ID @"id=jd1112"
+#define GUEST_HEAVEN_CHATTER_ID @"id=jd1201"
 // 게잡의 봄 ID
 #define GUEST_CHATTER_SPRING_ID @"id=jb0901"
 // 게잡의 여름 ID

@@ -227,7 +227,12 @@ static UIView *alaphaView = nil;
         if (delegate && [(NSObject *)delegate respondsToSelector:@selector(requestFinishedWithResults:tag:)]) {
             [delegate requestFinishedWithResults:models tag:request.tag];
         }
+    } else {
+        if (delegate && [(NSObject *)delegate respondsToSelector:@selector(requestFinishedWithResults:tag:)]) {
+            [delegate requestFinishedWithResults:nil tag:request.tag];
+        }
     }
+    
     [bestizParser release];
     
     [self hideRequestActivity];
@@ -244,6 +249,10 @@ static UIView *alaphaView = nil;
     NSLog(@"faild domain: %@", error.domain);
     
     [self hideRequestActivity];
+    
+    if (delegate && [(NSObject *)delegate respondsToSelector:@selector(requestFailed)]) {
+        [delegate requestFailed];
+    }
 }
 
 
