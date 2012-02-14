@@ -263,7 +263,7 @@ static UIActivityIndicatorView *actView = nil;
     BTCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"BTCommentCell" owner:self options:nil] lastObject];
-        cell.comment.contentInset = UIEdgeInsetsMake(-4,-9,0,0);
+        cell.comment.contentInset = UIEdgeInsetsMake(-3,-9,0,0);
     }
     
     // Configure the cell...
@@ -285,8 +285,9 @@ static UIActivityIndicatorView *actView = nil;
     BTComment *comment = [data objectAtIndex:indexPath.row];
     NSString *commentString = comment.comment;
     CGSize commentSize = [commentString sizeWithFont:[UIFont boldSystemFontOfSize:13] constrainedToSize:CGSizeMake(290, 1000) lineBreakMode:UILineBreakModeCharacterWrap];
-    CGFloat offset = commentSize.height - 13;
-    if (offset > 13) {
+    CGFloat textHeight = 12;
+    CGFloat offset = commentSize.height - textHeight;
+    if (offset > textHeight) {
         cellHeight += offset;
     }
 
