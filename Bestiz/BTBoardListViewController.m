@@ -182,18 +182,6 @@
     }
 }
 
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (!isSearching) {
-        if (indexPath.row % 2 == 0) {
-            [cell setBackgroundColor:[UIColor colorWithRed:242.0/255.0 green:246.0/255.0 blue:251.0/255.0 alpha:0.9]];
-        } else {
-            [cell setBackgroundColor:[UIColor whiteColor]];
-        }   
-    }
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"";
@@ -253,10 +241,12 @@
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
             
             [cell.textLabel setFont:[UIFont systemFontOfSize:kFontSize-1]];
+            [cell.textLabel setBackgroundColor:[UIColor clearColor]];
             [cell.detailTextLabel setFont:[UIFont systemFontOfSize:kFontSize]];
             [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
             [cell.detailTextLabel setMinimumFontSize:10.0f];
             [cell.detailTextLabel setAdjustsFontSizeToFitWidth:YES];
+            [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
         }
         
         // Configure the cell...
@@ -295,6 +285,13 @@
         
         [BTContents getContents:_boardIndex.boardCategory url:[board.url absoluteString] delegate:self withRequestque:requestQueue];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (!isSearching) {
+        [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     }
 }
 

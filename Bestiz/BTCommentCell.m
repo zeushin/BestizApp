@@ -12,7 +12,8 @@
 
 @synthesize nameLabel;
 @synthesize ipLabel;
-@synthesize commentLabel;
+//@synthesize commentLabel;
+@synthesize comment;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -35,7 +36,8 @@
 {
     [nameLabel release];
     [ipLabel release];
-    [commentLabel release];
+//    [commentLabel release];
+    [comment release];
     
     [super dealloc];
 }

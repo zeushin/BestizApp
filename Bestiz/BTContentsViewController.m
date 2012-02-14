@@ -84,7 +84,7 @@ static UIActivityIndicatorView *actView = nil;
     [_webView.scrollView setScrollEnabled:NO];
     
     // 배경색 지정
-    [_scrollView setBackgroundColor:[UIColor colorWithRed:242.0/255.0 green:246.0/255.0 blue:251.0/255.0 alpha:0.9]];
+//    [_scrollView setBackgroundColor:[UIColor colorWithRed:242.0/255.0 green:246.0/255.0 blue:251.0/255.0 alpha:0.9]];
 //    [self.view setBackgroundColor:[UIColor colorWithRed:242.0/255.0 green:246.0/255.0 blue:251.0/255.0 alpha:0.9]];
     
     // 컨텐츠 리퀘스트
@@ -263,31 +263,24 @@ static UIActivityIndicatorView *actView = nil;
     BTCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"BTCommentCell" owner:self options:nil] lastObject];
+        cell.comment.contentInset = UIEdgeInsetsMake(-4,-9,0,0);
     }
     
     // Configure the cell...
     BTComment *comment = [data objectAtIndex:indexPath.row];
     cell.nameLabel.text = comment.name;
     cell.ipLabel.text = comment.ip;
-    cell.commentLabel.text = comment.comment;
+//    cell.commentLabel.text = comment.comment;
+    cell.comment.text = comment.comment;
 
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row % 2 == 0) {
-        [cell setBackgroundColor:[UIColor colorWithRed:242.0/255.0 green:246.0/255.0 blue:251.0/255.0 alpha:0.9]];
-    } else {
-        [cell setBackgroundColor:[UIColor whiteColor]];
-    }
 }
 
 
 #pragma mark - Table view delegate method
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat cellHeight = 55.0f;
+    CGFloat cellHeight = 58.0f;
     
     BTComment *comment = [data objectAtIndex:indexPath.row];
     NSString *commentString = comment.comment;
