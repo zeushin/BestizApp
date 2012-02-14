@@ -64,6 +64,8 @@
 		A521C5A014B4B1440034AEA7 /* css.html in Resources */ = {isa = PBXBuildFile; fileRef = A521C59F14B4B1440034AEA7 /* css.html */; };
 		A5267A8914A1BC6300453DB3 /* BTContentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5267A8714A1BC6300453DB3 /* BTContentsViewController.m */; };
 		A5267A8A14A1BC6300453DB3 /* BTContentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5267A8814A1BC6300453DB3 /* BTContentsViewController.xib */; };
+		A527145F14E96CC300C3FCF8 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A527145E14E96CC300C3FCF8 /* Icon.png */; };
+		A527146114E96CC800C3FCF8 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A527146014E96CC800C3FCF8 /* Icon@2x.png */; };
 		A52955BD14948AFF0008CDB0 /* BTBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A52955BC14948AFF0008CDB0 /* BTBaseParser.m */; };
 		A52955C11494FC570008CDB0 /* BTBoardParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A52955C01494FC570008CDB0 /* BTBoardParser.m */; };
 		A52955C314950F6B0008CDB0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A52955C214950F6B0008CDB0 /* CFNetwork.framework */; };
@@ -176,6 +178,8 @@
 		A5267A8614A1BC6300453DB3 /* BTContentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTContentsViewController.h; sourceTree = "<group>"; };
 		A5267A8714A1BC6300453DB3 /* BTContentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTContentsViewController.m; sourceTree = "<group>"; };
 		A5267A8814A1BC6300453DB3 /* BTContentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BTContentsViewController.xib; sourceTree = "<group>"; };
+		A527145E14E96CC300C3FCF8 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		A527146014E96CC800C3FCF8 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		A52955BB14948AFF0008CDB0 /* BTBaseParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBaseParser.h; sourceTree = "<group>"; };
 		A52955BC14948AFF0008CDB0 /* BTBaseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBaseParser.m; sourceTree = "<group>"; };
 		A52955BF1494FC570008CDB0 /* BTBoardParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBoardParser.h; sourceTree = "<group>"; };
@@ -428,6 +432,8 @@
 		A5FBFCD7145EFBF400B45C7B = {
 			isa = PBXGroup;
 			children = (
+				A527146014E96CC800C3FCF8 /* Icon@2x.png */,
+				A527145E14E96CC300C3FCF8 /* Icon.png */,
 				A5F5F8B914B9554E00D47310 /* iAd.framework */,
 				A52955C814950F980008CDB0 /* libz.1.2.5.dylib */,
 				A52955C614950F850008CDB0 /* MobileCoreServices.framework */,
@@ -593,6 +599,8 @@
 				A520667A14D51173009FD300 /* delete@2x.png in Resources */,
 				A520667B14D51173009FD300 /* reload.png in Resources */,
 				A520667C14D51173009FD300 /* reload@2x.png in Resources */,
+				A527145F14E96CC300C3FCF8 /* Icon.png in Resources */,
+				A527146114E96CC800C3FCF8 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,7 +723,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -732,7 +740,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
